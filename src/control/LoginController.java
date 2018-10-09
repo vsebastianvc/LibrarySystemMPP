@@ -16,6 +16,7 @@ import model.dataaccess.DataAccess;
 import model.dataaccess.DataAccessFacade;
 import model.domain.User;
 import util.Util;
+import view.MainMenuController;
 
 public class LoginController extends Application {
 
@@ -25,13 +26,15 @@ public class LoginController extends Application {
 	private PasswordField password;
 	@FXML
 	private Button btnLogin;
+	private static Stage primaryStage;
 
 	public static void main(String[] args) {
 		Application.launch(LoginController.class, args);
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primary) throws Exception {
+		primaryStage = primary;
 		Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 		primaryStage.setTitle("Welcome MUM Library System");
 		Scene scene = new Scene(root);
@@ -50,10 +53,11 @@ public class LoginController extends Application {
 			Util.showAlert("User id or password Wrong ", "Error login", AlertType.ERROR);
 
 		} else if (user.authenticate(userId.getText(), password.getText())) {
-//				MainMenuController secondWindow = new MainMenuController(user);
+			Util.persistUser(user);
+			MainMenuController secondWindow = new MainMenuController();
 			System.out.println("LOGIN SUCCESS");
 			try {
-//					secondWindow.start(this.primaryStage);
+				secondWindow.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

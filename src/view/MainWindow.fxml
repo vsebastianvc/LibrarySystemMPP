@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" focusTraversable="false" minWidth="400.0" prefHeight="703.0" prefWidth="900.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SystemController">
+<AnchorPane id="AnchorPane" fx:id="mainPanel" focusTraversable="false" minWidth="400.0" prefHeight="703.0" prefWidth="900.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SystemController">
   <children>
     <SplitPane id="Split Pane (Vertical Splits)" dividerPositions="0.23661270236612703" focusTraversable="true" minHeight="550.0" minWidth="800.0" prefHeight="550.0" prefWidth="800.0" styleClass="vsplitpane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
       <items>

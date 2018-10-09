@@ -7,26 +7,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import util.Util;
 
-public class Main extends Application {
+public class MainMenuController extends Application {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Application.launch(Main.class, (java.lang.String[])null);
+        Application.launch(MainMenuController.class, (java.lang.String[])null);
     }
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("MainWindow.fxml"));
+            AnchorPane page = (AnchorPane) FXMLLoader.load(MainMenuController.class.getResource("MainWindow.fxml"));
             Scene scene = new Scene(page);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Library System");
             primaryStage.show();
+            System.out.println("Persist USER: "+Util.getInstanceUser());
         } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
