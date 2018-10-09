@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="350.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SystemController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b4b5" height="248.0" layoutX="19.0" layoutY="41.0" opacity="0.1" stroke="BLACK" strokeType="INSIDE" width="717.0" />
+      <Label layoutX="35.0" layoutY="89.0" text="Member ID:" />
+      <Label layoutX="35.0" layoutY="135.0" text="First name:" />
+      <Label layoutX="36.0" layoutY="180.0" text="Last name:" />
+      <Label layoutX="392.0" layoutY="90.0" text="Street:" />
+      <Label layoutX="392.0" layoutY="181.0" text="City:" />
+      <Label layoutX="395.0" layoutY="136.0" text="State:" />
+      <Label layoutX="394.0" layoutY="230.0" text="Zip:" />
+      <Label layoutX="35.0" layoutY="229.0" text="Telephone number:" />
+      <TextField layoutX="184.0" layoutY="84.0" prefHeight="31.0" prefWidth="115.0" promptText="Enter new member's ID" />
+      <TextField layoutX="184.0" layoutY="130.0" />
+      <TextField layoutX="184.0" layoutY="186.0" />
+      <TextField layoutX="184.0" layoutY="235.0" />
+      <TextField layoutX="455.0" layoutY="85.0" prefHeight="31.0" prefWidth="270.0" />
+      <TextField layoutX="455.0" layoutY="131.0" />
+      <TextField layoutX="455.0" layoutY="176.0" />
+      <TextField layoutX="455.0" layoutY="225.0" prefHeight="31.0" prefWidth="115.0" />
+      <Button layoutX="286.0" layoutY="299.0" mnemonicParsing="false" text="Create new member" />
+   </children>
+</AnchorPane>

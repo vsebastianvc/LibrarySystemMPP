@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="400.0" minWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b4b5" height="245.0" layoutX="55.0" layoutY="64.0" opacity="0.21" stroke="BLACK" strokeType="INSIDE" width="577.0" />
+      <Button layoutX="310.0" layoutY="335.0" mnemonicParsing="false" text="Create new book" />
+      <Label layoutX="110.0" layoutY="100.0" text="ISBN:" />
+      <TextField layoutX="216.0" layoutY="95.0" />
+      <Label layoutX="111.0" layoutY="148.0" text="Title:" />
+      <Label layoutX="111.0" layoutY="201.0" text="Authors:" />
+      <Label layoutX="111.0" layoutY="248.0" text="Max. checkout:" />
+      <Label layoutX="367.0" layoutY="248.0" text="Number of copies:" />
+      <TextField layoutX="216.0" layoutY="143.0" prefHeight="31.0" prefWidth="328.0" />
+      <TextField layoutX="216.0" layoutY="196.0" prefHeight="31.0" prefWidth="328.0" />
+      <TextField layoutX="240.0" layoutY="243.0" prefHeight="31.0" prefWidth="47.0" />
+      <TextField layoutX="497.0" layoutY="243.0" prefHeight="31.0" prefWidth="47.0" />
+   </children>
+</AnchorPane>
