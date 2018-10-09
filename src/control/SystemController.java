@@ -1,4 +1,4 @@
-package view;
+package control;
 
 import java.io.IOException;
 
@@ -12,41 +12,70 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import view.Main;
 
 public class SystemController {
 
-	@FXML  // fx:id="checkOut"
-	private MenuItem checkOut;
+	@FXML  // fx:id="menuCheckOut"
+	private MenuItem menuCheckOut;
 	
-	@FXML  // fx:id="checkIn"
-	private MenuItem checkIn;
+	@FXML  // fx:id="menuCheckIn"
+	private MenuItem menuCheckIn;
 	
-	@FXML  // fx:id="queryOverdue"
-	private MenuItem queryOverdue;
+	@FXML  // fx:id="menuQueryOverdue"
+	private MenuItem menuQueryOverdue;
 	
-	@FXML  // fx:id="newMember"
-	private MenuItem systemExit;
+	@FXML  // fx:id="printCheckoutRecord"
+	private MenuItem printCheckoutRecord;
 	
-	@FXML  // fx:id="newBook"
-	private MenuItem newBook;
+	@FXML  // fx:id="menuSystemExit"
+	private MenuItem menuSystemExit;
+	
+	@FXML  // fx:id="menuNewMember"
+	private MenuItem menuNewMember;
+
+	@FXML  // fx:id="menuNewBook"
+	private MenuItem menuNewBook;
 	
 	@FXML  // fx:id="newBookCopy"
-	private MenuItem newBookCopy;
+	private MenuItem menuBookCopy;
 	
-    //@FXML //  fx:id="deleteIssue"
-    //private Button deleteIssue; // Value injected by FXMLLoader
+	//New member's screen items
+	
+	@FXML  // fx:id="newMemberId"
+	private TextField fieldNewMemberId;
+	@FXML  // fx:id="newFirstName"
+	private TextField fieldNewFirstName;
+	@FXML  // fx:id="newLastName"
+	private TextField fieldNewLastName;
+	@FXML  // fx:id="newTelNumber"
+	private TextField fieldNewTelNumber;
+	@FXML  // fx:id="newStreet"
+	private TextField fieldNewStreet;
+	@FXML  // fx:id="newState"
+	private TextField fieldNewState;
+	@FXML  // fx:id="newCity"
+	private TextField fieldNewCity;
+	@FXML  // fx:id="newZip"
+	private TextField fieldNewZip;
 
-    @FXML //  fx:id="newIssue"
-    private Button newIssue; // Value injected by FXMLLoader
+	@FXML  // fx:id="createNewMember"
+	private Button btnCreateNewMember;
+	
+    @FXML
+    void createNewMember(ActionEvent event) {
+    	
+    	System.out.println("Call controller to add new member here");
+    }
+
+	@FXML //  fx:id="newIssue"
+    private Button btnNewIssue; // Value injected by FXMLLoader
 
     @FXML //  fx:id="saveIssue"
-    private Button saveIssue; // Value injected by FXMLLoader
+    private Button btnSaveIssue; // Value injected by FXMLLoader
     
     @FXML //  fx:id="titleLine"
     private AnchorPane contentPanel; // Value injected by FXMLLoader
-
-    @FXML //  fx:id="newMemberID"
-    private TextField newMemberID; // Value injected by FXMLLoader
 
     /**
      * Initializes the controller class.

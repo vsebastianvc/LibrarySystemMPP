@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" focusTraversable="false" minWidth="400.0" prefHeight="703.0" prefWidth="900.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SystemController">
+<AnchorPane id="AnchorPane" focusTraversable="false" minWidth="400.0" prefHeight="703.0" prefWidth="900.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.SystemController">
   <children>
     <SplitPane id="Split Pane (Vertical Splits)" dividerPositions="0.23661270236612703" focusTraversable="true" minHeight="550.0" minWidth="800.0" prefHeight="550.0" prefWidth="800.0" styleClass="vsplitpane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
       <items>
@@ -54,16 +54,16 @@
         <menus>
           <Menu mnemonicParsing="false" text="Actions">
             <items>
-              <MenuItem fx:id="checkOut" mnemonicParsing="false" onAction="#checkOutFired" text="Check out...">
+              <MenuItem fx:id="menuCheckOut" mnemonicParsing="false" onAction="#checkOutFired" text="Check out...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem fx:id="checkIn" mnemonicParsing="false" onAction="#checkInFired" text="Check in...">
+                  <MenuItem fx:id="menuCheckIn" mnemonicParsing="false" onAction="#checkInFired" text="Check in...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="I" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="queryOverdue" mnemonicParsing="false" onAction="#queryOverdueFired" text="Query overdue...">
+                  <MenuItem fx:id="menuQueryOverdue" mnemonicParsing="false" onAction="#queryOverdueFired" text="Query overdue...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Q" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -78,7 +78,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Members">
             <items>
-              <MenuItem fx:id="newMember" mnemonicParsing="false" onAction="#newMemberFired" text="New...">
+              <MenuItem fx:id="menuNewMember" mnemonicParsing="false" onAction="#newMemberFired" text="New...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="M" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -86,11 +86,11 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Books">
             <items>
-              <MenuItem fx:id="newBook" mnemonicParsing="false" onAction="#newBookFired" text="New...">
+              <MenuItem fx:id="menuNewBook" mnemonicParsing="false" onAction="#newBookFired" text="New...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="B" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem fx:id="newBookCopy" mnemonicParsing="false" onAction="#newBookCopyFired" text="New copy...">
+                  <MenuItem fx:id="menuBookCopy" mnemonicParsing="false" onAction="#newBookCopyFired" text="New copy...">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Y" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
