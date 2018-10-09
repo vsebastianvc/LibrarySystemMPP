@@ -65,7 +65,7 @@ public class SystemController {
 		String days7 = "7";
 		String days21 = "21";
 		listMaxDays.addAll(days7, days21);
-		choiceNewBookMaxCheckout.getItems().addAll(listMaxDays);
+		//choiceNewBookMaxCheckout.getItems().addAll(listMaxDays);
 	}
 
 	@FXML
