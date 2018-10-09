@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -44,7 +45,7 @@ public class SystemController {
 	@FXML // fx:id="fieldNewBookAuthors"
 	private TextField fieldNewBookAuthors;
 	@FXML // fx:id="choiceNewBookMaxCheckout"
-	private ChoiceBox<String> choiceNewBookMaxCheckout;
+	private ComboBox<String> choiceNewBookMaxCheckout;
 	@FXML // fx:id="fieldNewBookNumCopies"
 	private TextField fieldNewBookNumCopies;
 
@@ -53,10 +54,10 @@ public class SystemController {
 
 	@FXML
 	void createNewBook(ActionEvent event) {
-
+		
 		System.out.printf("Add book with: ISBN: %s, Title: %s, Authors: %s, Max Checkout: %s, num of copies: %s \n",
 				fieldNewBookISBN.getText(), fieldNewBookTitle.getText(), fieldNewBookAuthors.getText(),
-				choiceNewBookMaxCheckout.getValue(), fieldNewBookNumCopies.getText());
+				choiceNewBookMaxCheckout.getSelectionModel().getSelectedItem(), fieldNewBookNumCopies.getText());
 	}
 
 	private void initMaxCheckout() {
@@ -72,7 +73,7 @@ public class SystemController {
 	void newBookFired(ActionEvent event) {
 		System.out.println("New Book");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("addBook.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBook.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
