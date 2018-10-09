@@ -10,11 +10,9 @@ import model.domain.Book;
 import model.domain.LibraryMember;
 import model.domain.User;
 
-
 public class TestData {
 	List<LibraryMember> members = new ArrayList<LibraryMember>();
 	@SuppressWarnings("serial")
-
 
 	List<Address> addresses = new ArrayList<Address>() {
 		{
@@ -39,8 +37,6 @@ public class TestData {
 		}
 	};
 
-
-
 	@SuppressWarnings("serial")
 	List<Book> allBooks = new ArrayList<Book>() {
 		{
@@ -51,8 +47,6 @@ public class TestData {
 
 		}
 	};
-
-
 
 	@SuppressWarnings("serial")
 	List<User> allUsers = new ArrayList<User>() {
@@ -72,7 +66,8 @@ public class TestData {
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
 	}
-	///create books
+
+	/// create books
 	public void bookData() {
 		allBooks.get(0).addCopy();
 		allBooks.get(0).addCopy();
@@ -87,9 +82,7 @@ public class TestData {
 		DataAccessFacade.loadUserMap(allUsers);
 	}
 
-
-
-	//create library members
+	// create library members
 
 	public void libraryMemberData() {
 		LibraryMember libraryMember = new LibraryMember("1001", "Andy", "Rogers", "641-223-2211", addresses.get(4));
@@ -105,8 +98,18 @@ public class TestData {
 
 		DataAccessFacade.loadMemberMap(members);
 
+	}
+
+	public void panamitouuu() {
 
 	}
 
+	public void panamitouuu1() {
+
+	}
+
+	public void panamitouu2u() {
+
+	}
 
 }
