@@ -64,8 +64,12 @@ public class SystemController {
 	
     @FXML
     void createNewMember(ActionEvent event) {
+    	String strMemberId;
     	
-    	System.out.println("Call controller to add new member here");
+    	strMemberId = fieldNewMemberId.getText();
+    	System.out.printf("Add member with: ID: %s, First name: %s, Last name: %s, Tel number: %s, Street: %s, State: %s, City: %s, Zip: %s \n",
+    			fieldNewMemberId.getText(), fieldNewFirstName.getText(), fieldNewLastName.getText(), fieldNewTelNumber.getText(), 
+    			fieldNewStreet.getText(), fieldNewState.getText(), fieldNewCity.getText(), fieldNewZip.getText());
     }
 
 	@FXML //  fx:id="newIssue"
