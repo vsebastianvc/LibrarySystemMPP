@@ -64,9 +64,9 @@ public class SystemController {
 		ObservableList<String> listMaxDays = FXCollections.observableArrayList();
 		listMaxDays.removeAll(listMaxDays);
 		String days7 = "7";
-		String days12 = "12";
-		listMaxDays.addAll(days7, days12);
-		// choiceNewBookMaxCheckout.getItems().addAll(listMaxDays);
+		String days21 = "21";
+		listMaxDays.addAll(days7, days21);
+		choiceNewBookMaxCheckout.getItems().addAll(listMaxDays);
 	}
 
 	@FXML
@@ -156,6 +156,18 @@ public class SystemController {
 				fieldCheckoutMemberId.getText());
 	}
 
+	// Checkin screen items
+	@FXML // fx:id="fieldCheckinISBN"
+	private TextField fieldCheckinISBN;
+
+	@FXML // fx:id="btnCheckin"
+	private Button btnCheckin;
+
+	@FXML
+	void checkinBook(ActionEvent event) {
+		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
+	}
+
 	@FXML // fx:id="newIssue"
 	private Button btnNewIssue; // Value injected by FXMLLoader
 
@@ -170,6 +182,7 @@ public class SystemController {
 	 */
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
+		System.out.println("Entro a initialize");
 		initMaxCheckout();
 	}
 
