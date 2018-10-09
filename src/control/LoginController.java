@@ -1,5 +1,6 @@
 package control;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.application.Application;
@@ -11,12 +12,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.dataaccess.DataAccess;
 import model.dataaccess.DataAccessFacade;
 import model.domain.User;
 import util.Util;
-import view.Main;
 
 public class LoginController extends Application {
 
@@ -54,14 +55,20 @@ public class LoginController extends Application {
 
 		} else if (user.authenticate(userId.getText(), password.getText())) {
 			Util.persistUser(user);
-			Main secondWindow = new Main();
-			System.out.println("LOGIN SUCCESS");
+			AnchorPane page=null;
 			try {
-				secondWindow.start(primaryStage);
-			} catch (Exception e) {
+				page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/MainWindow.fxml"));
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+            Scene scene = new Scene(page);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Library System");
+            primaryStage.show();
+//            System.out.println("Persist USER: "+Util.getInstanceUser());
+			System.out.println("LOGIN SUCCESS");
+		
 		} else {
 			Util.showAlert("User id or password Wrong ", "Error login", AlertType.ERROR);
 		}

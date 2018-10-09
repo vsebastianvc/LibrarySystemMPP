@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import view.Main;
 
 public class SystemController {
 
@@ -73,7 +72,7 @@ public class SystemController {
 	void newBookFired(ActionEvent event) {
 		System.out.println("New Book");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("addBook.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("addBook.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -131,7 +130,7 @@ public class SystemController {
 	void newBookCopyFired(ActionEvent event) {
 		System.out.println("New Book Copy");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("addBookCopy.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("addBookCopy.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -182,7 +181,7 @@ public class SystemController {
 	void newIssueFired(ActionEvent event) {
 
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("Test.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("Test.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -244,7 +243,7 @@ public class SystemController {
 	void checkOutFired(ActionEvent event) {
 		System.out.println("Check Out");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("CheckOut.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -258,7 +257,7 @@ public class SystemController {
 	void checkInFired(ActionEvent event) {
 		System.out.println("Check In");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("CheckIn.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("CheckIn.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -272,7 +271,7 @@ public class SystemController {
 	void queryOverdueFired(ActionEvent event) {
 		System.out.println("Query Overdue");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("queryOverdue.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("queryOverdue.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -286,7 +285,7 @@ public class SystemController {
 	void newMemberFired(ActionEvent event) {
 		System.out.println("New Member");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("addNewMember.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("addNewMember.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -300,7 +299,7 @@ public class SystemController {
 	void printCheckoutRecordFired(ActionEvent event) {
 		System.out.println("Print checkout");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(Main.class.getResource("printCheckoutRecord.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("printCheckoutRecord.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
