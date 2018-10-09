@@ -60,15 +60,6 @@ public class SystemController {
 				choiceNewBookMaxCheckout.getSelectionModel().getSelectedItem(), fieldNewBookNumCopies.getText());
 	}
 
-	private void initMaxCheckout() {
-		ObservableList<String> listMaxDays = FXCollections.observableArrayList();
-		listMaxDays.removeAll(listMaxDays);
-		String days7 = "7";
-		String days21 = "21";
-		listMaxDays.addAll(days7, days21);
-		//choiceNewBookMaxCheckout.getItems().addAll(listMaxDays);
-	}
-
 	@FXML
 	void newBookFired(ActionEvent event) {
 		System.out.println("New Book");
@@ -131,7 +122,7 @@ public class SystemController {
 	void newBookCopyFired(ActionEvent event) {
 		System.out.println("New Book Copy");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("addBookCopy.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBookCopy.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -168,6 +159,30 @@ public class SystemController {
 		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
 	}
 
+	// Query overdue
+	@FXML // fx:id="fieldQueryOverdueISBN"
+	private TextField fieldQueryOverdueISBN;
+
+	@FXML // fx:id="btnQueryOverdue"
+	private Button btnQueryOverdue;
+
+	@FXML
+	void queryOverdue(ActionEvent event) {
+		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
+	}
+
+	// Print checkout record
+	@FXML // fx:id="fieldPrintCheckoutMemberID"
+	private TextField fieldPrintCheckoutMemberID;
+
+	@FXML // fx:id="btnPrintCheckoutRecord"
+	private Button btnPrintCheckoutRecord;
+
+	@FXML
+	void printCheckoutRecord(ActionEvent event) {
+		System.out.printf("Print checkout record of member id: %s \n", fieldPrintCheckoutMemberID.getText());
+	}
+	
 	@FXML // fx:id="newIssue"
 	private Button btnNewIssue; // Value injected by FXMLLoader
 
@@ -183,7 +198,6 @@ public class SystemController {
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		System.out.println("Entro a initialize");
-		initMaxCheckout();
 	}
 
 	/**
@@ -257,7 +271,7 @@ public class SystemController {
 	void checkOutFired(ActionEvent event) {
 		System.out.println("Check Out");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("CheckOut.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOut.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -271,7 +285,7 @@ public class SystemController {
 	void checkInFired(ActionEvent event) {
 		System.out.println("Check In");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("CheckIn.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckIn.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -285,7 +299,7 @@ public class SystemController {
 	void queryOverdueFired(ActionEvent event) {
 		System.out.println("Query Overdue");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("queryOverdue.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/queryOverdue.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -299,7 +313,7 @@ public class SystemController {
 	void newMemberFired(ActionEvent event) {
 		System.out.println("New Member");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("addNewMember.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addNewMember.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
@@ -313,7 +327,7 @@ public class SystemController {
 	void printCheckoutRecordFired(ActionEvent event) {
 		System.out.println("Print checkout");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("printCheckoutRecord.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/printCheckoutRecord.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
