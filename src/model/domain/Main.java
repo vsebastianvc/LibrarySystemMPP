@@ -1,5 +1,6 @@
 package model.domain;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import model.dataaccess.DataAccess;
@@ -20,7 +21,12 @@ public class Main {
 		List<LibraryMember> mems = new ArrayList<>();
 		mems.addAll(members);
 		//implement
-		return null;
+		List<String> result = new ArrayList<>();
+		for (LibraryMember lm : mems) {
+			if (lm.getAddress().getZip().contains("3"))
+				result.add(lm.getMemberId());
+		}
+		return result;
 		
 	}
 	//Returns a list of all ids of  LibraryMembers that have an overdue book
@@ -30,7 +36,16 @@ public class Main {
 		List<LibraryMember> mems = new ArrayList<>();
 		mems.addAll(members);
 		//implement
-		return null;
+		List<String> result = new ArrayList<>();
+		for (LibraryMember lm : mems) {
+			for (CheckoutRecordEntry cre : lm.getCheckoutRecordEntries()) {
+				if (cre.getDueDate().compareTo(LocalDate.now()) < 0) {
+					result.add(lm.getMemberId());
+					break;
+				}
+			}
+		}
+		return result;
 		
 	}
 	
@@ -41,7 +56,12 @@ public class Main {
 		List<Book> bs = new ArrayList<>();
 		bs.addAll(books);
 		//implement
-		return null;
+		List<String> result = new ArrayList<>();
+		for (Book b : books) {
+			if (b.getAuthors().size() > 1)
+				result.add(b.getIsbn());
+		}
+		return result;
 		
 		}
 
