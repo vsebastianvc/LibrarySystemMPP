@@ -8,6 +8,7 @@ import model.domain.Address;
 import model.domain.Author;
 import model.domain.Book;
 import model.domain.LibraryMember;
+import model.domain.Person;
 import model.domain.User;
 
 public class TestData {
@@ -51,9 +52,9 @@ public class TestData {
 	@SuppressWarnings("serial")
 	List<User> allUsers = new ArrayList<User>() {
 		{
-			add(new User("101", "xyz", Auth.LIBRARIAN));
-			add(new User("102", "abc", Auth.ADMIN));
-			add(new User("103", "111", Auth.BOTH));
+			add(new User("101", "xyz", Auth.LIBRARIAN, new Person("Andres", "Panamito", "0986036701",addresses.get(4))));
+			add(new User("102", "abc", Auth.ADMIN,new Person("Sebastian", "Valencia", "3203387287",addresses.get(1))));
+			add(new User("103", "111", Auth.BOTH, new Person("Carlos", "Hernandez", "3004633523",addresses.get(5))));
 		}
 	};
 
@@ -100,18 +101,4 @@ public class TestData {
 
 	}
 
-	public void panamitouuu() {
-
-	}
-
-	public void panamitouuu1() {
-
-	}
-
-	public void panamitouu2u() {
-
-	}
-  public void useVietnamita() {
-	  
-  }
 }
