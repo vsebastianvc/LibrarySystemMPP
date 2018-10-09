@@ -16,7 +16,7 @@ import model.dataaccess.DataAccess;
 import model.dataaccess.DataAccessFacade;
 import model.domain.User;
 import util.Util;
-import view.MainMenuController;
+import view.Main;
 
 public class LoginController extends Application {
 
@@ -54,7 +54,7 @@ public class LoginController extends Application {
 
 		} else if (user.authenticate(userId.getText(), password.getText())) {
 			Util.persistUser(user);
-			MainMenuController secondWindow = new MainMenuController();
+			Main secondWindow = new Main();
 			System.out.println("LOGIN SUCCESS");
 			try {
 				secondWindow.start(primaryStage);
