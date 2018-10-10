@@ -9,11 +9,11 @@
 
 <AnchorPane prefHeight="218.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.LoginController">
    <children>
-      <TextField fx:id="userId" layoutX="161.0" layoutY="80.0" />
+      <TextField fx:id="userId" layoutX="161.0" layoutY="63.0" />
       <PasswordField fx:id="password" layoutX="161.0" layoutY="106.0" />
       <Label layoutX="86.0" layoutY="110.0" text="Password" />
-      <Label layoutX="86.0" layoutY="84.0" text="User" />
-      <Label id="Heading" fx:id="lblHeading" layoutX="115.0" layoutY="21.0" styleClass="title" text="User Login" textAlignment="CENTER">
+      <Label layoutX="86.0" layoutY="67.0" text="User" />
+      <Label id="Heading" fx:id="lblHeading" layoutX="135.0" layoutY="8.0" styleClass="title" text="User Login" textAlignment="CENTER">
          <font>
             <Font size="29.0" />
          </font>

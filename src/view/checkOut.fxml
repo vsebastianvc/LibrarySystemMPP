@@ -12,7 +12,7 @@
       <Button fx:id="btnCheckout" layoutX="196.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkoutBook" text="Check out" />
       <Label layoutX="108.0" layoutY="129.0" text="ISBN:" />
       <Label layoutX="108.0" layoutY="77.0" text="Member ID:" />
-      <TextField fx:id="fieldCheckoutISBN" layoutX="214.0" layoutY="72.0" />
-      <TextField fx:id="fieldCheckoutMemberId" layoutX="214.0" layoutY="124.0" />
+      <TextField fx:id="fieldCheckoutMemberId" layoutX="214.0" layoutY="72.0" />
+      <TextField fx:id="fieldCheckoutISBN" layoutX="214.0" layoutY="124.0" />
    </children>
 </AnchorPane>

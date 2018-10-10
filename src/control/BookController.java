@@ -47,9 +47,15 @@ public class BookController {
 	void createNewBookCopy(ActionEvent event) {
 		DataAccess db = new DataAccessFacade();
 		HashMap<String, Book> books = db.readBooksMap();
+		try {
+			valISBN(fieldNewCopyISBN.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+			return;
+		}
 		Book book = books.get(fieldNewCopyISBN.getText());
 		if (book == null) {
-			Util.showAlert("Book not found, please check ", "Error login", AlertType.ERROR);
+			Util.showAlert("Book not found, please check ", "Error", AlertType.ERROR);
 		} else {
 			book.addCopy();
 			db.saveAbook(book);
@@ -67,6 +73,12 @@ public class BookController {
 			System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
 		}
 	}
+	
+	public void valISBN(String isbn) throws ValException {
+		if (isbn == null || isbn.isEmpty())
+			throw new ValException("Invalid Book's ISBN");
+	}
+
 
 	@FXML
 	void createNewBook(ActionEvent event) {
