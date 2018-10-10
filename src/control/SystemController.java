@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -15,12 +16,16 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.domain.Person;
+import model.dataaccess.Auth;
+import model.dataaccess.DataAccess;
+import model.dataaccess.DataAccessFacade;
+import model.domain.CheckoutRecordEntry;
+import model.domain.LibraryMember;
 import util.Util;
-import util.ValException;
 
 public class SystemController {
 
@@ -97,40 +102,8 @@ public class SystemController {
 		}
 	}
 
-	// New member's screen items
-	@FXML // fx:id="fieldNewMemberId"
-	private TextField fieldNewMemberId;
-	@FXML // fx:id="newFirstName"
-	private TextField fieldNewFirstName;
-	@FXML // fx:id="newLastName"
-	private TextField fieldNewLastName;
-	@FXML // fx:id="newTelNumber"
-	private TextField fieldNewTelNumber;
-	@FXML // fx:id="newStreet"
-	private TextField fieldNewStreet;
-	@FXML // fx:id="newState"
-	private TextField fieldNewState;
-	@FXML // fx:id="newCity"
-	private TextField fieldNewCity;
-	@FXML // fx:id="newZip"
-	private TextField fieldNewZip;
 
-	@FXML // fx:id="createNewMember"
-	private Button btnCreateNewMember;
 	
-	@FXML
-	void createNewMember(ActionEvent event) {
-
-		try {
-			valNoMemberEmpty();
-			valPhone();
-			valZip();
-			}
-		catch(ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-		}
-	}
-
 	public void valNoMemberEmpty() throws ValException {
 		if (fieldNewMemberId.getText()==null||fieldNewFirstName.getText()==null||fieldNewLastName.getText()==null||
 				fieldNewTelNumber.getText()==null||fieldNewStreet.getText()==null||fieldNewState.getText()==null||
@@ -152,6 +125,8 @@ public class SystemController {
 			throw new ValException("Invalid phone number");
 	}
 	
+	@FXML // fx:id="createNewMember"
+	private Button btnCreateNewMember;
 	// New book's copy screen items
 	@FXML // fx:id="fieldNewCopyISBN"
 	private TextField fieldNewCopyISBN;
@@ -227,7 +202,23 @@ public class SystemController {
 
 	@FXML
 	void printCheckoutRecord(ActionEvent event) {
+		DataAccess db = new DataAccessFacade();
+		HashMap<String, LibraryMember> users = db.readMemberMap();
+		LibraryMember member = users.get(fieldPrintCheckoutMemberID.getText());
 		System.out.printf("Print checkout record of member id: %s \n", fieldPrintCheckoutMemberID.getText());
+		System.out.println("Sending to printer ....");
+		System.out.println("=====================================================");
+		System.out.println("Copy number | ISBN | Title"+" | Checkout date | Due date");
+		System.out.println("=====================================================");
+		if(member != null && member.getCheckoutRecordEntries()!=null) {
+			for (CheckoutRecordEntry entry : member.getCheckoutRecordEntries()) {
+				System.out.println(entry.getBookcopy().toString()+" | "+entry.getCheckoutDate().toString()+" | "+entry.getDueDate().toString());
+			}
+		} else {
+			Util.showAlert("Member id Not found", "Error", AlertType.ERROR);
+		}
+		System.out.println("=====================================================");
+		System.out.println("Printer - Finish");
 	}
 	
 	@FXML // fx:id="newIssue"
@@ -359,6 +350,10 @@ public class SystemController {
 	@FXML
 	void newMemberFired(ActionEvent event) {
 		System.out.println("New Member");
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
+			Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
+			return;
+		}
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addNewMember.fxml"));
 			this.contentPanel.getChildren().clear();
