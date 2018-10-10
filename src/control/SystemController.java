@@ -4,19 +4,15 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.animation.FadeTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -26,6 +22,7 @@ import model.dataaccess.DataAccessFacade;
 import model.domain.CheckoutRecordEntry;
 import model.domain.LibraryMember;
 import util.Util;
+import util.ValException;
 
 public class SystemController {
 
