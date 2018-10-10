@@ -24,7 +24,7 @@
       <Button fx:id="btnCreateNewBook" layoutX="310.0" layoutY="335.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
    </children>
    <children>
-      <ComboBox fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="243.0" prefHeight="31.0" prefWidth="74.0">
+      <ComboBox value="7" fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="243.0" prefHeight="31.0" prefWidth="74.0">
          	  <items>
          		<FXCollections fx:factory="observableArrayList">
                  <String fx:value="7" />

@@ -48,8 +48,8 @@ public class LoginController extends Application {
 		DataAccess db = new DataAccessFacade();
 		HashMap<String, User> users = db.readUserMap();
 		User user = users.get(userId.getText());
-		System.out.println(userId.getText());
-		System.out.println(password.getText());
+//		System.out.println(userId.getText());
+//		System.out.println(password.getText());
 		if (user == null) {
 			Util.showAlert("User id or password Wrong ", "Error login", AlertType.ERROR);
 
