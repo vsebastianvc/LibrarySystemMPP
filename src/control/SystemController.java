@@ -43,14 +43,12 @@ public class SystemController {
 	@FXML // fx:id="newBookCopy"
 	private MenuItem menuBookCopy;
 
-	
-	
 
 	@FXML
 	void newBookFired(ActionEvent event) {
 		System.out.println("New Book");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
-			Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
+			Util.showAlert("Librarian cannot add a Book", "Permission denied", AlertType.ERROR);
 			return;
 		}
 		try {
@@ -68,7 +66,7 @@ public class SystemController {
 	void newBookCopyFired(ActionEvent event) {
 		System.out.println("New Book Copy");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
-			Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
+			Util.showAlert("Librarian cannot add a Book Copy", "Permission denied", AlertType.ERROR);
 			return;
 		}
 		try {
@@ -93,10 +91,26 @@ public class SystemController {
 
 	@FXML
 	void checkoutBook(ActionEvent event) {
+		try {
+			valMemberID(fieldCheckoutMemberId.getText());
+			valISBN(fieldCheckoutISBN.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
 		System.out.printf("Checkout book with: ISBN: %s for member id: %s \n", fieldCheckoutISBN.getText(),
 				fieldCheckoutMemberId.getText());
 	}
 
+	public void valISBN(String isbn) throws ValException {
+		if (isbn == null || isbn.isEmpty())
+			throw new ValException("Invalid Book's ISBN");
+	}
+
+	public void valMemberID(String memberID) throws ValException {
+		if (memberID == null || memberID.isEmpty())
+			throw new ValException("Invalid Member ID");
+	}
+	
 	// Checkin screen items
 	@FXML // fx:id="fieldCheckinISBN"
 	private TextField fieldCheckinISBN;
@@ -106,6 +120,11 @@ public class SystemController {
 
 	@FXML
 	void checkinBook(ActionEvent event) {
+		try {
+			valISBN(fieldCheckinISBN.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
 		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
 	}
 
@@ -118,8 +137,14 @@ public class SystemController {
 
 	@FXML
 	void queryOverdue(ActionEvent event) {
+		try {
+			valISBN(fieldQueryOverdueISBN.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
 		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
 	}
+	
 
 	// Print checkout record
 	@FXML // fx:id="fieldPrintCheckoutMemberID"
@@ -132,6 +157,12 @@ public class SystemController {
 	void printCheckoutRecord(ActionEvent event) {
 		DataAccess db = new DataAccessFacade();
 		HashMap<String, LibraryMember> users = db.readMemberMap();
+		try {
+			valMemberID(fieldPrintCheckoutMemberID.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+			return;
+		}
 		LibraryMember member = users.get(fieldPrintCheckoutMemberID.getText());
 		System.out.printf("Print checkout record of member id: %s \n", fieldPrintCheckoutMemberID.getText());
 		System.out.println("Sending to printer ....");
@@ -163,53 +194,7 @@ public class SystemController {
 	 */
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
-		System.out.println("Entro a initialize");
-	}
-
-	/**
-	 * Called when the NewIssue button is fired.
-	 *
-	 * @param event the action event.
-	 */
-	@FXML
-	void newIssueFired(ActionEvent event) {
-
-		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("Test.fxml"));
-			this.contentPanel.getChildren().clear();
-			this.contentPanel.getChildren().add(page);
-			System.out.println("Agregado el panel");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	/**
-	 * Called when the DeleteIssue button is fired.
-	 *
-	 * @param event the action event.
-	 */
-	@FXML
-	void deleteIssueFired(ActionEvent event) {
-
-	}
-
-	/**
-	 * Called when the SaveIssue button is fired.
-	 *
-	 * @param event the action event.
-	 */
-	@FXML
-	void saveIssueFired(ActionEvent event) {
-		this.contentPanel.getChildren().clear();
-	}
-
-	FadeTransition messageTransition = null;
-
-	public void displayMessage(String message) {
-
+		System.out.println("Initializing");
 	}
 
 	@FXML
