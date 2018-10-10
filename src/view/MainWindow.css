@@ -177,5 +177,5 @@
 
 
 .background {
-    -fx-background-color:yellow;
+    -fx-background-color:linear-gradient(to bottom, #f8f8f8, #b5b5b5);
 }

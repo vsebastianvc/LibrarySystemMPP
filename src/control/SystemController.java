@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -17,6 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.domain.Person;
+import util.Util;
+import util.ValException;
 
 public class SystemController {
 
@@ -55,10 +59,29 @@ public class SystemController {
 	@FXML
 	void createNewBook(ActionEvent event) {
 		
-		System.out.printf("Add book with: ISBN: %s, Title: %s, Authors: %s, Max Checkout: %s, num of copies: %s \n",
-				fieldNewBookISBN.getText(), fieldNewBookTitle.getText(), fieldNewBookAuthors.getText(),
-				choiceNewBookMaxCheckout.getSelectionModel().getSelectedItem(), fieldNewBookNumCopies.getText());
+		try {
+			valNoBookEmpty();
+			valNumCopies();
+			}
+		catch(ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
 	}
+
+	public void valNoBookEmpty() throws ValException {
+		if (fieldNewBookISBN.getText()==null||fieldNewBookTitle.getText()==null||fieldNewBookAuthors.getText()==null||
+			choiceNewBookMaxCheckout.getSelectionModel().getSelectedItem()==null||fieldNewBookNumCopies.getText()==null)
+			throw new ValException("Book fields cannot be empty");
+		if (fieldNewBookISBN.getText().isEmpty()||fieldNewBookTitle.getText().isEmpty()||fieldNewBookAuthors.getText().isEmpty()||
+			fieldNewBookNumCopies.getText().isEmpty())
+			throw new ValException("Book fields cannot be empty");
+	}
+	
+	public void valNumCopies() throws ValException{
+		if (!fieldNewBookNumCopies.getText().matches("[0-9]{1,5}"))
+			throw new ValException("Invalid number of copies");
+	}
+	
 
 	@FXML
 	void newBookFired(ActionEvent event) {
@@ -94,17 +117,41 @@ public class SystemController {
 
 	@FXML // fx:id="createNewMember"
 	private Button btnCreateNewMember;
-
+	
 	@FXML
 	void createNewMember(ActionEvent event) {
 
-		System.out.printf(
-				"Add member with: ID: %s, First name: %s, Last name: %s, Tel number: %s, Street: %s, State: %s, City: %s, Zip: %s \n",
-				fieldNewMemberId.getText(), fieldNewFirstName.getText(), fieldNewLastName.getText(),
-				fieldNewTelNumber.getText(), fieldNewStreet.getText(), fieldNewState.getText(), fieldNewCity.getText(),
-				fieldNewZip.getText());
+		try {
+			valNoMemberEmpty();
+			valPhone();
+			valZip();
+			}
+		catch(ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
 	}
 
+	public void valNoMemberEmpty() throws ValException {
+		if (fieldNewMemberId.getText()==null||fieldNewFirstName.getText()==null||fieldNewLastName.getText()==null||
+				fieldNewTelNumber.getText()==null||fieldNewStreet.getText()==null||fieldNewState.getText()==null||
+				fieldNewCity.getText()==null||fieldNewZip.getText()==null)
+				throw new ValException("Member fields cannot be empty");
+		if (fieldNewMemberId.getText().isEmpty()||fieldNewFirstName.getText().isEmpty()||fieldNewLastName.getText().isEmpty()||
+			fieldNewTelNumber.getText().isEmpty()||fieldNewStreet.getText().isEmpty()||fieldNewState.getText().isEmpty()||
+			fieldNewCity.getText().isEmpty()||fieldNewZip.getText().isEmpty())
+			throw new ValException("Member fields cannot be empty");
+	}
+	
+	public void valZip() throws ValException{
+		if (!fieldNewZip.getText().matches("[0-9]{5}"))
+			throw new ValException("Invalid Zip code");
+	}
+	
+	public void valPhone() throws ValException{
+		if (!fieldNewTelNumber.getText().matches("[0-9]*"))
+			throw new ValException("Invalid phone number");
+	}
+	
 	// New book's copy screen items
 	@FXML // fx:id="fieldNewCopyISBN"
 	private TextField fieldNewCopyISBN;
