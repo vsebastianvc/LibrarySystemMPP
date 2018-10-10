@@ -55,8 +55,14 @@ public class BookController {
 			db.saveAbook(book);
 			DataAccess dbTest = new DataAccessFacade();
 			HashMap<String, Book> booksTest = dbTest.readBooksMap();
-			Book bookTest = books.get(fieldNewCopyISBN.getText());
-			System.out.println("Check User: " + booksTest);
+			
+			Book bookTest = booksTest.get(fieldNewCopyISBN.getText());
+			for (BookCopy bookCopy : bookTest.getCopies()) {
+
+				System.out.println("Check User: " + bookCopy);
+
+			}
+			
 			this.panelAddCopy.getChildren().clear();
 			System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
 		}
