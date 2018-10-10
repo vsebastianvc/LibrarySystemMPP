@@ -43,51 +43,16 @@ public class SystemController {
 	@FXML // fx:id="newBookCopy"
 	private MenuItem menuBookCopy;
 
-	// New book screen items
-	@FXML // fx:id="fieldNewBookISBN"
-	private TextField fieldNewBookISBN;
-	@FXML // fx:id="fieldNewBookTitle"
-	private TextField fieldNewBookTitle;
-	@FXML // fx:id="fieldNewBookAuthors"
-	private TextField fieldNewBookAuthors;
-	@FXML // fx:id="choiceNewBookMaxCheckout"
-	private ComboBox<String> choiceNewBookMaxCheckout;
-	@FXML // fx:id="fieldNewBookNumCopies"
-	private TextField fieldNewBookNumCopies;
-
-	@FXML // fx:id="createNewBook"
-	private Button btnCreateNewBook;
-
-	@FXML
-	void createNewBook(ActionEvent event) {
-		
-		try {
-			valNoBookEmpty();
-			valNumCopies();
-			}
-		catch(ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-		}
-	}
-
-	public void valNoBookEmpty() throws ValException {
-		if (fieldNewBookISBN.getText()==null||fieldNewBookTitle.getText()==null||fieldNewBookAuthors.getText()==null||
-			choiceNewBookMaxCheckout.getSelectionModel().getSelectedItem()==null||fieldNewBookNumCopies.getText()==null)
-			throw new ValException("Book fields cannot be empty");
-		if (fieldNewBookISBN.getText().isEmpty()||fieldNewBookTitle.getText().isEmpty()||fieldNewBookAuthors.getText().isEmpty()||
-			fieldNewBookNumCopies.getText().isEmpty())
-			throw new ValException("Book fields cannot be empty");
-	}
 	
-	public void valNumCopies() throws ValException{
-		if (!fieldNewBookNumCopies.getText().matches("[0-9]{1,5}"))
-			throw new ValException("Invalid number of copies");
-	}
 	
 
 	@FXML
 	void newBookFired(ActionEvent event) {
 		System.out.println("New Book");
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
+			Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
+			return;
+		}
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBook.fxml"));
 			this.contentPanel.getChildren().clear();
@@ -99,47 +64,13 @@ public class SystemController {
 		}
 	}
 
-
-	
-	public void valNoMemberEmpty() throws ValException {
-		if (fieldNewMemberId.getText()==null||fieldNewFirstName.getText()==null||fieldNewLastName.getText()==null||
-				fieldNewTelNumber.getText()==null||fieldNewStreet.getText()==null||fieldNewState.getText()==null||
-				fieldNewCity.getText()==null||fieldNewZip.getText()==null)
-				throw new ValException("Member fields cannot be empty");
-		if (fieldNewMemberId.getText().isEmpty()||fieldNewFirstName.getText().isEmpty()||fieldNewLastName.getText().isEmpty()||
-			fieldNewTelNumber.getText().isEmpty()||fieldNewStreet.getText().isEmpty()||fieldNewState.getText().isEmpty()||
-			fieldNewCity.getText().isEmpty()||fieldNewZip.getText().isEmpty())
-			throw new ValException("Member fields cannot be empty");
-	}
-	
-	public void valZip() throws ValException{
-		if (!fieldNewZip.getText().matches("[0-9]{5}"))
-			throw new ValException("Invalid Zip code");
-	}
-	
-	public void valPhone() throws ValException{
-		if (!fieldNewTelNumber.getText().matches("[0-9]*"))
-			throw new ValException("Invalid phone number");
-	}
-	
-	@FXML // fx:id="createNewMember"
-	private Button btnCreateNewMember;
-	// New book's copy screen items
-	@FXML // fx:id="fieldNewCopyISBN"
-	private TextField fieldNewCopyISBN;
-
-	@FXML // fx:id="btnCreateNewBookCopy"
-	private Button btnCreateNewBookCopy;
-
-	@FXML
-	void createNewBookCopy(ActionEvent event) {
-
-		System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
-	}
-
 	@FXML
 	void newBookCopyFired(ActionEvent event) {
 		System.out.println("New Book Copy");
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
+			Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
+			return;
+		}
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBookCopy.fxml"));
 			this.contentPanel.getChildren().clear();

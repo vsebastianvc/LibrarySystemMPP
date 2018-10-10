@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.FXCollections ?>
 
-<AnchorPane minHeight="400.0" minWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.SystemController">
+<AnchorPane minHeight="400.0" minWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.BookController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b4b5" height="245.0" layoutX="50.0" layoutY="64.0" opacity="0.21" stroke="BLACK" strokeType="INSIDE" width="649.0" />
       <Label layoutX="110.0" layoutY="100.0" text="ISBN:" />
@@ -24,7 +24,7 @@
       <Button fx:id="btnCreateNewBook" layoutX="310.0" layoutY="335.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
    </children>
    <children>
-      <ComboBox value="7" fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="243.0" prefHeight="31.0" prefWidth="74.0">
+      <ComboBox fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="243.0" prefHeight="31.0" prefWidth="74.0" value="7">
          	  <items>
          		<FXCollections fx:factory="observableArrayList">
                  <String fx:value="7" />

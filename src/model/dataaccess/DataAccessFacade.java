@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -110,5 +111,12 @@ public class DataAccessFacade implements DataAccess {
 			}
 		}
 		return retVal;
+	}
+
+	@Override
+	public void saveAbook(Book bk) {
+			List<Book> bks = new ArrayList<Book>();
+			bks.add(bk);
+			loadBookMap(bks);
 	}
 }
