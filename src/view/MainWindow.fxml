@@ -27,17 +27,11 @@
       <children>
         <GridPane id="GridPane" layoutY="6.0" prefHeight="32.0" prefWidth="773.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="6.0">
           <children>
-            <Label fx:id="messageBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="269.0" prefHeight="43.0" prefWidth="630.0" text="Library System" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+            <Label fx:id="messageBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="269.0" prefHeight="43.0" prefWidth="854.0" text="Library System" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
-            <HBox id="HBox" alignment="CENTER" fillHeight="false" spacing="15.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
-              <children>
-                <Button fx:id="newIssue" alignment="CENTER" minWidth="62.0" onAction="#newIssueFired" prefHeight="25.0" prefWidth="66.0" styleClass="roundedButton" text="New" textOverrun="CLIP" />
-                <Button fx:id="saveIssue" alignment="CENTER" minWidth="62.0" onAction="#saveIssueFired" prefHeight="25.0" prefWidth="66.0" styleClass="roundedButton" text="Save" />
-                <Button fx:id="deleteIssue" alignment="CENTER" minWidth="62.0" onAction="#deleteIssueFired" prefHeight="25.0" prefWidth="66.0" styleClass="roundedButton" text="Delete" />
-              </children>
-            </HBox>
+            <HBox id="HBox" alignment="CENTER" fillHeight="false" spacing="15.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
@@ -50,7 +44,7 @@
         </GridPane>
       </children>
     </AnchorPane>
-      <MenuBar prefHeight="32.0" prefWidth="900.0">
+      <MenuBar minHeight="36.0" minWidth="400.0" prefHeight="36.0" prefWidth="900.0">
         <menus>
           <Menu mnemonicParsing="false" text="Actions">
             <items>
