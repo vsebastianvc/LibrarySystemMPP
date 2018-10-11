@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.collections.*?>
@@ -45,51 +44,3 @@
       <Button fx:id="btnCreateNewBook" layoutX="356.0" layoutY="383.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
    </children>
  </AnchorPane>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.collections.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.collections.FXCollections?>
-
-<AnchorPane minHeight="400.0" minWidth="750.0" prefHeight="438.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.BookController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b4b5" height="330.0" layoutX="50.0" layoutY="39.0" opacity="0.21" stroke="BLACK" strokeType="INSIDE" width="847.0" />
-      <Label layoutX="111.0" layoutY="68.0" text="ISBN:" />
-      <Label layoutX="112.0" layoutY="116.0" text="Title:" />
-      <Label layoutX="110.0" layoutY="158.0" text="Authors:" />
-      <Label layoutX="111.0" layoutY="316.0" text="Max. checkout:" />
-      <Label layoutX="450.0" layoutY="316.0" text="Number of copies:" />
-      <TextField fx:id="fieldNewBookISBN" layoutX="217.0" layoutY="63.0" />
-      <TextField fx:id="fieldNewBookTitle" layoutX="217.0" layoutY="111.0" prefHeight="31.0" prefWidth="411.0" />
-      <TableView fx:id="fieldNewBookAuthors" editable="true" layoutX="110.0" layoutY="179.0" prefHeight="99.0" prefWidth="759.0" tableMenuButtonVisible="true">
-        <columns>
-          <TableColumn editable="true" prefWidth="100.0" fx:id="firstName" text="First Name" />
-          <TableColumn editable="true" prefWidth="98.0" fx:id="lastName" text="Last Name" />
-            <TableColumn editable="true" prefWidth="103.0" fx:id="phone" text="Phone" />
-            <TableColumn editable="true" prefWidth="88.0" fx:id="street" text="Street" />
-            <TableColumn editable="true" prefWidth="76.0" fx:id="city" text="City" />
-            <TableColumn editable="true" prefWidth="72.0" fx:id="state" text="State" />
-            <TableColumn editable="true" prefWidth="66.0" fx:id="columZip" text="Zip_Code" />
-            <TableColumn editable="true" prefWidth="153.0" fx:id="biography" text="Biography" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnCreateNewAuthor" layoutX="771.0" layoutY="278.0" mnemonicParsing="false" onAction="#createNewAuthor" text="Add Author" />
-      <ComboBox fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="311.0" prefHeight="31.0" prefWidth="74.0" value="7">
-         	  <items>
-         		<FXCollections fx:factory="observableArrayList">
-                 <String fx:value="7" />
-                 <String fx:value="21" />
-               </FXCollections>
-             </items>
-           </ComboBox>
-      <TextField fx:id="fieldNewBookNumCopies" layoutX="580.0" layoutY="311.0" prefHeight="31.0" prefWidth="47.0" />
-      <Label layoutX="310.0" layoutY="300.0" text="days" />
-      <Button fx:id="btnCreateNewBook" layoutX="356.0" layoutY="383.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
-   </children>
- </AnchorPane>
->>>>>>> branch 'master' of https://github.com/vsebastianvc/LibrarySystemMPP.git
