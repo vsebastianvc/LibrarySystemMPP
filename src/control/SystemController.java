@@ -221,31 +221,6 @@ public class SystemController {
 			e.printStackTrace();
 		}
 	}
-
-
-	@FXML
-	void showCheckOutRecord() {
-		List<Author> aut1 = new ArrayList<Author>();
-		aut1.add(new Author( "Carlos", "Hernandez", "+57 3004633523", new Address("1000 N 4St","Fairfield","IOWA","52557"), "Lealo"));
-		LibraryMember lm1 = new LibraryMember("1001", "Carlos", "Hernandez", "+57 3004633523", new Address("1000 N 4St","Fairfield","IOWA","52557"));
-		Book b1 = new Book("BK-001", "Mi vida secreta",21,aut1);
-		
-		System.out.println("Show Check Out Record");
-		try {
-			FXMLLoader loader =  new FXMLLoader(getClass().getResource("/view/CheckoutRecord.fxml"));
-			CheckoutController controller = new CheckoutController(lm1.getMemberId(), lm1.getFullName());
-	        // Set it in the FXMLLoader
-	        loader.setController(controller);
-			AnchorPane page = (AnchorPane)loader.load();
-			this.contentPanel.getChildren().clear();
-			this.contentPanel.getChildren().add(page);
-			setFormInfo("Check Out Record","Book check out done!. Press Return button.","/view/Reading.PNG");
-			System.out.println("Agregado el panel Check Out Record");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	@FXML
 	void checkInFired(ActionEvent event) {

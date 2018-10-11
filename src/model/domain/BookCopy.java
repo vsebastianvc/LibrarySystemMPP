@@ -95,6 +95,12 @@ final public class BookCopy implements Serializable{
 			return "";
 		return result.getMember().getMemberId() + " - " + result.getMember().getFullName();
 	}
+	public String getIsbn() {
+		return book.getIsbn();
+	}
+	public String bookName() {
+		return book.getTitle();
+	}
 
 	@Override
 	public String toString() {

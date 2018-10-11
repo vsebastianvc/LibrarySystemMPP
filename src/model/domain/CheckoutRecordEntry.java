@@ -1,7 +1,6 @@
 package model.domain;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -48,6 +47,12 @@ public class CheckoutRecordEntry implements Serializable {
 	public LibraryMember getMember() {
 		// TODO Auto-generated method stub
 		return member;
+	}
+	public String getBookIsbn() {
+		return bookcopy.getBook().getIsbn();
+	}
+	public String getBookName() {
+		return bookcopy.getBook().getTitle();
 	}
 	public String getDuedateString() {
 		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM-dd-yyyy");

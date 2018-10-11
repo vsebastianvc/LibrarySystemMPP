@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -38,6 +39,8 @@ public class ActionController {
 	@FXML // fx:id="btnPrintCheckoutRecord"
 	private Button btnPrintCheckoutRecord;
 	
+	
+	
 	@FXML
 	void checkoutBook(ActionEvent event) {
 		try {
@@ -68,9 +71,14 @@ public class ActionController {
 				bc.changeAvailability();
 				db.saveNewMember(list_members.get(fieldCheckoutMemberId.getText()));
 				db.saveAbook(temp_book);
+				Util.persistRecord(cre);
 				this.panelCheckOut.getChildren().clear();
 				System.out.println("HIZO CHECKOUT !!!!");
 				try {
+					
+					AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOutRecord.fxml"));
+					this.panelCheckOut.getChildren().clear();
+					this.panelCheckOut.getChildren().add(page);
 					// checkoutSuccess( cre);
 
 					// Gooooooooooooo hizo checkout

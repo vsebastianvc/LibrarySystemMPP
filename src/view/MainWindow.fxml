@@ -108,7 +108,6 @@
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Y" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#showCheckOutRecord" text="Checkout Recod Demo" />
             </items>
           </Menu>
         </menus>
