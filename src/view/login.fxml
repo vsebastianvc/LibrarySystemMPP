@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
@@ -16,7 +17,7 @@
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Label>
-      <Label id="Heading" fx:id="lblHeading" layoutX="251.0" layoutY="15.0" text="Library System Login" textAlignment="CENTER" textFill="#171717">
+      <Label id="Heading" fx:id="lblHeading" layoutX="291.0" layoutY="14.0" text="Library System Login" textAlignment="CENTER" textFill="#171717">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
@@ -35,6 +36,11 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <ImageView fitHeight="193.0" fitWidth="261.0" layoutX="14.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/view/library.jpg" />
+         </image>
+      </ImageView>
    </children>
  
    

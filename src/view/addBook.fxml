@@ -12,29 +12,24 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4b4b5" height="330.0" layoutX="50.0" layoutY="39.0" opacity="0.21" stroke="BLACK" strokeType="INSIDE" width="847.0" />
       <Label layoutX="111.0" layoutY="68.0" text="ISBN:" />
-      <TextField fx:id="fieldNewBookISBN" layoutX="217.0" layoutY="63.0" />
       <Label layoutX="112.0" layoutY="116.0" text="Title:" />
       <Label layoutX="110.0" layoutY="158.0" text="Authors:" />
       <Label layoutX="111.0" layoutY="300.0" text="Max. checkout:" />
       <Label layoutX="450.0" layoutY="300.0" text="Number of copies:" />
+      <TextField fx:id="fieldNewBookISBN" layoutX="217.0" layoutY="63.0" />
       <TextField fx:id="fieldNewBookTitle" layoutX="217.0" layoutY="111.0" prefHeight="31.0" prefWidth="411.0" />
-      <TextField fx:id="fieldNewBookNumCopies" layoutX="580.0" layoutY="295.0" prefHeight="31.0" prefWidth="47.0" />
-      <Label layoutX="310.0" layoutY="300.0" text="days" />
       <TableView fx:id="fieldNewBookAuthors" editable="true" layoutX="110.0" layoutY="179.0" prefHeight="99.0" prefWidth="759.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn editable="true" prefWidth="100.0" fx:id="firstName" text="First Name" />
-          <TableColumn editable="true" prefWidth="98.0" fx:id="lastName" text="Last Name" />
-            <TableColumn editable="true" prefWidth="103.0" fx:id="phone" text="Phone" />
-            <TableColumn editable="true" prefWidth="88.0" fx:id="street" text="Street" />
-            <TableColumn editable="true" prefWidth="76.0" fx:id="city" text="City" />
-            <TableColumn editable="true" prefWidth="72.0" fx:id="state" text="State" />
-            <TableColumn editable="true" prefWidth="66.0" fx:id="zip" text="Zip" />
-            <TableColumn editable="true" prefWidth="153.0" fx:id="biography" text="Biography" />
+          <TableColumn fx:id="firstName" editable="true" prefWidth="100.0" text="First Name" />
+          <TableColumn fx:id="lastName" editable="true" prefWidth="98.0" text="Last Name" />
+            <TableColumn fx:id="phone" editable="true" prefWidth="103.0" text="Phone" />
+            <TableColumn fx:id="street" editable="true" prefWidth="88.0" text="Street" />
+            <TableColumn fx:id="city" editable="true" prefWidth="76.0" text="City" />
+            <TableColumn fx:id="state" editable="true" prefWidth="72.0" text="State" />
+            <TableColumn fx:id="zip" editable="true" prefWidth="66.0" text="Zip" />
+            <TableColumn fx:id="biography" editable="true" prefWidth="153.0" text="Biography" />
         </columns>
       </TableView>
-      <Button fx:id="btnCreateNewBook" layoutX="356.0" layoutY="383.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
-   </children>
-         <children>
       <ComboBox fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="295.0" prefHeight="31.0" prefWidth="74.0" value="7">
          	  <items>
          		<FXCollections fx:factory="observableArrayList">
@@ -43,5 +38,8 @@
                </FXCollections>
              </items>
            </ComboBox>
-      </children>
+      <TextField fx:id="fieldNewBookNumCopies" layoutX="580.0" layoutY="295.0" prefHeight="31.0" prefWidth="47.0" />
+      <Label layoutX="310.0" layoutY="300.0" text="days" />
+      <Button fx:id="btnCreateNewBook" layoutX="356.0" layoutY="383.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
+   </children>
  </AnchorPane>
