@@ -46,42 +46,43 @@ public class ActionController {
 		try {
 			valMemberID(fieldCheckoutMemberId.getText());
 			valISBN(fieldCheckoutISBN.getText());
+			DataAccess db = new DataAccessFacade();
+			HashMap<String, LibraryMember> list_members = db.readMemberMap();
+			HashMap<String, Book> books = db.readBooksMap();
+			Book temp_book = books.get(fieldCheckoutISBN.getText());
+				if (temp_book.isAvailable()) {
+					BookCopy bc = temp_book.getNextAvailableCopy();
+
+					CheckoutRecordEntry cre = list_members.get(fieldCheckoutMemberId.getText()).addCheckoutRecordEntry(bc,
+							LocalDate.now(), LocalDate.now().plusDays(temp_book.getMaxCheckoutLength()));
+					bc.changeAvailability();
+					db.saveNewMember(list_members.get(fieldCheckoutMemberId.getText()));
+					db.saveAbook(temp_book);
+					Util.persistRecord(cre);
+					this.panelCheckOut.getChildren().clear();
+					System.out.println("HIZO CHECKOUT !!!!");
+					try {
+						
+						AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOutRecord.fxml"));
+						this.panelCheckOut.getChildren().clear();
+						this.panelCheckOut.getChildren().add(page);
+						// checkoutSuccess( cre);
+
+						// Gooooooooooooo hizo checkout
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					return;
+				} else {
+					Util.showAlert("No available copy for the book", "Not data found", AlertType.ERROR);
+					return;
+				}
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 		}
-		DataAccess db = new DataAccessFacade();
-		HashMap<String, LibraryMember> list_members = db.readMemberMap();
-		HashMap<String, Book> books = db.readBooksMap();
-		Book temp_book = books.get(fieldCheckoutISBN.getText());
-			if (temp_book.isAvailable()) {
-				BookCopy bc = temp_book.getNextAvailableCopy();
-
-				CheckoutRecordEntry cre = list_members.get(fieldCheckoutMemberId.getText()).addCheckoutRecordEntry(bc,
-						LocalDate.now(), LocalDate.now().plusDays(temp_book.getMaxCheckoutLength()));
-				bc.changeAvailability();
-				db.saveNewMember(list_members.get(fieldCheckoutMemberId.getText()));
-				db.saveAbook(temp_book);
-				Util.persistRecord(cre);
-				this.panelCheckOut.getChildren().clear();
-				System.out.println("HIZO CHECKOUT !!!!");
-				try {
-					
-					AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOutRecord.fxml"));
-					this.panelCheckOut.getChildren().clear();
-					this.panelCheckOut.getChildren().add(page);
-					// checkoutSuccess( cre);
-
-					// Gooooooooooooo hizo checkout
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				return;
-			} else {
-				Util.showAlert("No available copy for the book", "Not data found", AlertType.ERROR);
-				return;
-			}
+		
 	}
 
 	@FXML

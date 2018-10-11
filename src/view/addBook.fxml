@@ -22,14 +22,14 @@
       <Label layoutX="310.0" layoutY="300.0" text="days" />
       <TableView fx:id="fieldNewBookAuthors" editable="true" layoutX="110.0" layoutY="179.0" prefHeight="99.0" prefWidth="759.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn prefWidth="100.0" text="First Name" />
-          <TableColumn prefWidth="98.0" text="Last Name" />
-            <TableColumn prefWidth="103.0" text="Phone" />
-            <TableColumn prefWidth="88.0" text="Street" />
-            <TableColumn prefWidth="76.0" text="City" />
-            <TableColumn prefWidth="72.0" text="State" />
-            <TableColumn prefWidth="66.0" text="Zip" />
-            <TableColumn prefWidth="153.0" text="Biography" />
+          <TableColumn editable="true" prefWidth="100.0" fx:id="firstName" text="First Name" />
+          <TableColumn editable="true" prefWidth="98.0" fx:id="lastName" text="Last Name" />
+            <TableColumn editable="true" prefWidth="103.0" fx:id="phone" text="Phone" />
+            <TableColumn editable="true" prefWidth="88.0" fx:id="street" text="Street" />
+            <TableColumn editable="true" prefWidth="76.0" fx:id="city" text="City" />
+            <TableColumn editable="true" prefWidth="72.0" fx:id="state" text="State" />
+            <TableColumn editable="true" prefWidth="66.0" fx:id="zip" text="Zip" />
+            <TableColumn editable="true" prefWidth="153.0" fx:id="biography" text="Biography" />
         </columns>
       </TableView>
       <Button fx:id="btnCreateNewBook" layoutX="356.0" layoutY="383.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />

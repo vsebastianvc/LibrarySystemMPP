@@ -18,10 +18,7 @@ final public class Author extends Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() +", biography " + biography;
+		return super.toString() + ", biography " + biography;
 	}
-
-
-	
 
 }
