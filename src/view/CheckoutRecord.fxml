@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane prefHeight="0.0" prefWidth="216.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="397.0" prefWidth="782.0">
+         <children>
+            <TableView fx:id="fieldCheckRecBookGrid" layoutX="42.0" layoutY="126.0" prefHeight="195.0" prefWidth="697.0">
+              <columns>
+                <TableColumn fx:id="ISBN" editable="false" prefWidth="113.0" text="ISBN" />
+                <TableColumn fx:id="BookName" editable="false" prefWidth="309.0" text="Book Name" />
+                  <TableColumn fx:id="DateOut" editable="false" prefWidth="134.0" text="Check Out Date" />
+                  <TableColumn fx:id="DueDate" editable="false" prefWidth="140.0" text="Due Date" />
+              </columns>
+            </TableView>
+            <Label layoutX="143.0" layoutY="40.0" text="Member ID:" />
+            <Label layoutX="143.0" layoutY="80.0" text="Member Name:" />
+            <TextField fx:id="fieldCheckRecMemberID" editable="false" layoutX="265.0" layoutY="35.0" prefHeight="31.0" prefWidth="97.0" />
+            <TextField fx:id="fieldCheckRecMemberName" editable="false" layoutX="265.0" layoutY="75.0" prefHeight="31.0" prefWidth="330.0" />
+            <Button fx:id="btnCheckRecDone" layoutX="339.0" layoutY="341.0" mnemonicParsing="false" text="Return" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
