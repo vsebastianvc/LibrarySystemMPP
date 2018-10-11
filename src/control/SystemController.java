@@ -86,6 +86,7 @@ public class SystemController {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBook.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
+			setFormInfo("Add New Book","Use to add a new Book. Enter Book information.","/view/AddBook.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -104,6 +105,7 @@ public class SystemController {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBookCopy.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
+			setFormInfo("Add New Book Copy","Use to add another copy of a Book. Enter Book's ISBN.","/view/NewBookCopy.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -207,7 +209,7 @@ public class SystemController {
 	void checkOutFired(ActionEvent event) {
 		System.out.println("Check Out");
 		if (Util.getInstanceUser().isSuperUser()) {
-			Util.showAlert("Admin can not checkout Book", "Permission denied", AlertType.ERROR);
+			Util.showAlert("Admin can not checkout Books", "Permission denied", AlertType.ERROR);
 			return;
 		}
 		try {
@@ -216,6 +218,25 @@ public class SystemController {
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Check Out Form","Use to check out a book from Library. Enter Member Id and Book's ISBN.","/view/CheckOut.PNG");
 			System.out.println("Agregado el panel Check Out");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	void checkInFired(ActionEvent event) {
+		System.out.println("Check In");
+		if (Util.getInstanceUser().isSuperUser()) {
+			Util.showAlert("Admin can not checkin Books", "Permission denied", AlertType.ERROR);
+			return;
+		}
+		try {
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/checkIn.fxml"));
+			this.contentPanel.getChildren().clear();
+			this.contentPanel.getChildren().add(page);
+			setFormInfo("Check In Form","Use to check in a book from Library. Enter Book's ISBN.","/view/CheckIn.PNG");
+			System.out.println("Agregado el panel Check In");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -248,26 +269,13 @@ public class SystemController {
 	}
 	
 	@FXML
-	void checkInFired(ActionEvent event) {
-		System.out.println("Check In");
-		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckIn.fxml"));
-			this.contentPanel.getChildren().clear();
-			this.contentPanel.getChildren().add(page);
-			System.out.println("Agregado el panel Check In");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@FXML
 	void queryOverdueFired(ActionEvent event) {
 		System.out.println("Query Overdue");
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/queryOverdue.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
+			setFormInfo("Query Overdue","Use to check for books already had to be returned to library. Enter Book's ISBN.","/view/QueryOverdue.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -286,6 +294,7 @@ public class SystemController {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addNewMember.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
+			setFormInfo("New Member","Use add a Library Member. Enter Member information.","/view/NewMember.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -300,6 +309,7 @@ public class SystemController {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/printCheckoutRecord.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
+			setFormInfo("Print Checkout Record","Use to print checkout's member history. Enter Member ID.","/view/CheckoutHistory.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
