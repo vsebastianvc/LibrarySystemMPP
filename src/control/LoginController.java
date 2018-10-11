@@ -41,8 +41,7 @@ public class LoginController extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 		primaryStage.setTitle("Welcome to Library System");
 		Scene scene = new Scene(root);
-		//scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
-		String css = this.getClass().getResource("/view/login.css").toExternalForm(); 
+		String css = this.getClass().getResource("/view/Login.css").toExternalForm(); 
 		primaryStage.setScene(scene);
 		scene.getStylesheets().add(css);
 		primaryStage.show();

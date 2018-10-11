@@ -1,5 +1,5 @@
 #top-container{
-     -fx-background-color: #fbffd1;/*#8E0000*/;
+     -fx-background-color: #fbffd1;/*#8E0000*/
 }
 
 .label {
@@ -7,5 +7,5 @@
 }
 
 .root {
-   -fx-background-image: url("login.jpg");
+ 	-fx-background-image: url("Login.jpg");
 }
