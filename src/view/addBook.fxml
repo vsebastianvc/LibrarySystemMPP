@@ -28,7 +28,7 @@
             <TableColumn editable="true" prefWidth="88.0" fx:id="street" text="Street" />
             <TableColumn editable="true" prefWidth="76.0" fx:id="city" text="City" />
             <TableColumn editable="true" prefWidth="72.0" fx:id="state" text="State" />
-            <TableColumn editable="true" prefWidth="66.0" fx:id="zip" text="Zip" />
+            <TableColumn editable="true" prefWidth="66.0" fx:id="columZip" text="Zip_Code" />
             <TableColumn editable="true" prefWidth="153.0" fx:id="biography" text="Biography" />
         </columns>
       </TableView>
