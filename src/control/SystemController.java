@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,11 @@ import util.ValException;
 
 public class SystemController {
 
+	@FXML // fx:id="titleLine"
+	private AnchorPane contentPanel; // Value injected by FXMLLoader
+
+    //Left main window panel objects, to be changed dinamically,
+	//depending on the form
 	@FXML // fx:id="fieldFormName"
 	private Label fieldFormName;
 	@FXML // fx:id="fieldFormDesc"
@@ -42,6 +48,7 @@ public class SystemController {
 	@FXML // fx:id="fieldFormImage"
 	private ImageView fieldFormImage;
 	
+	//Menu items
 	@FXML // fx:id="menuCheckOut"
 	private MenuItem menuCheckOut;
 	@FXML // fx:id="menuCheckIn"
@@ -59,6 +66,7 @@ public class SystemController {
 	@FXML // fx:id="newBookCopy"
 	private MenuItem menuBookCopy;
 	
+	//Checkout record entry fields
 	@FXML // fx:id="fieldCheckRecMemberID
 	private TextField fieldCheckRecMemberID;
 	@FXML // fx:id="fieldCheckRecMemberName
@@ -71,9 +79,20 @@ public class SystemController {
 	private TextField fieldCheckRecBookDateOut;
 	@FXML // fx:id="fieldCheckRecBookGrid
 	private TableView fieldCheckRecBookGrid;
-	
 	@FXML // fx:id="btnCheckRecDone"
 	private Button btnCheckRecDone;
+
+	// Checkin screen items
+	@FXML // fx:id="fieldCheckinISBN"
+	private TextField fieldCheckinISBN;
+	@FXML // fx:id="btnCheckin"
+	private Button btnCheckin;
+
+	// Query overdue items
+	@FXML // fx:id="fieldQueryOverdueISBN"
+	private TextField fieldQueryOverdueISBN;
+	@FXML // fx:id="btnQueryOverdue"
+	private Button btnQueryOverdue;
 
 	@FXML
 	void newBookFired(ActionEvent event) {
@@ -113,8 +132,6 @@ public class SystemController {
 		}
 	}
 
-
-
 	public void valISBN(String isbn) throws ValException {
 		if (isbn == null || isbn.isEmpty())
 			throw new ValException("Invalid Book's ISBN");
@@ -125,20 +142,6 @@ public class SystemController {
 			throw new ValException("Invalid Member ID");
 	}
 	
-	// Checkin screen items
-	@FXML // fx:id="fieldCheckinISBN"
-	private TextField fieldCheckinISBN;
-
-	@FXML // fx:id="btnCheckin"
-	private Button btnCheckin;
-
-	// Query overdue
-	@FXML // fx:id="fieldQueryOverdueISBN"
-	private TextField fieldQueryOverdueISBN;
-
-	@FXML // fx:id="btnQueryOverdue"
-	private Button btnQueryOverdue;
-
 	@FXML
 	void queryOverdue(ActionEvent event) {
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
@@ -153,22 +156,11 @@ public class SystemController {
 		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
 	}
 	
-	
-	@FXML // fx:id="newIssue"
-	private Button btnNewIssue; // Value injected by FXMLLoader
-
-	@FXML // fx:id="saveIssue"
-	private Button btnSaveIssue; // Value injected by FXMLLoader
-
-	@FXML // fx:id="titleLine"
-	private AnchorPane contentPanel; // Value injected by FXMLLoader
-
 	/**
 	 * Initializes the controller class.
 	 */
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
-		//setFormInfo("Main Menu","Choose a menu option or use shortcuts (ctrl+key) to access options.","/view/Book.PNG");
 		System.out.println("Initializing");
 	}
 
@@ -180,11 +172,10 @@ public class SystemController {
 	}
 	
 	@FXML
-	void systemExitFired(ActionEvent event) {
+	void systemLogoutFired(ActionEvent event) {
 		System.out.println("Exit");
-//    	Platform.exit();
 		Stage stage = new Stage();
-		stage.setTitle("Welcome MUM Library System");
+		stage.setTitle("Welcome Library System");
 		Pane myPane = null;
 		try {
 			myPane = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
@@ -194,10 +185,16 @@ public class SystemController {
 		}
 		Scene scene = new Scene(myPane);
 		stage.setScene(scene);
+		String css = this.getClass().getResource("/view/Login.css").toExternalForm(); 
 		stage.show();
-
+		scene.getStylesheets().add(css);
 		Stage st = (Stage) this.contentPanel.getScene().getWindow();
 		st.close();
+	}
+
+	@FXML
+	void systemExitFired(ActionEvent event) {
+		Platform.exit();
 	}
 
 	@FXML
@@ -221,8 +218,8 @@ public class SystemController {
 	@FXML
 	void checkInFired(ActionEvent event) {
 		System.out.println("Check In");
-		if (Util.getInstanceUser().isSuperUser()) {
-			Util.showAlert("Admin can not checkin Books", "Permission denied", AlertType.ERROR);
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.ADMIN)) {
+			Util.showAlert("Admin can not checkout Books", "Permission denied", AlertType.ERROR);
 			return;
 		}
 		try {
@@ -246,7 +243,6 @@ public class SystemController {
 			setFormInfo("Query Overdue","Use to check for books already had to be returned to library. Enter Book's ISBN.","/view/QueryOverdue.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -265,7 +261,6 @@ public class SystemController {
 			setFormInfo("New Member","Use add a Library Member. Enter Member information.","/view/NewMember.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -273,6 +268,10 @@ public class SystemController {
 	@FXML
 	void printCheckoutRecordFired(ActionEvent event) {
 		System.out.println("Print checkout");
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.ADMIN)) {
+			Util.showAlert("Admin can not print checkout record", "Permission denied", AlertType.ERROR);
+			return;
+		}
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/printCheckoutRecord.fxml"));
 			this.contentPanel.getChildren().clear();
@@ -280,7 +279,6 @@ public class SystemController {
 			setFormInfo("Print Checkout Record","Use to print checkout's member history. Enter Member ID.","/view/CheckoutHistory.PNG");
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

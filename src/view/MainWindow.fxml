@@ -25,7 +25,7 @@
                         <Image url="@Book.PNG" />
                      </image>
                   </ImageView>
-                  <Label fx:id="fieldFormName" layoutX="34.0" layoutY="46.0" text="Main Menu" textFill="WHITE">
+                  <Label fx:id="fieldFormName" layoutX="16.0" layoutY="47.0" prefHeight="21.0" prefWidth="189.0" text="Main Menu" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
@@ -44,7 +44,7 @@
       <children>
         <GridPane id="GridPane" layoutY="6.0" prefHeight="32.0" prefWidth="773.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="6.0">
           <children>
-            <Label fx:id="messageBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="269.0" prefHeight="43.0" prefWidth="990.0" text="Library System" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+            <Label fx:id="messageBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="269.0" prefHeight="43.0" prefWidth="1223.0" text="Library System" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Label>
@@ -83,6 +83,11 @@
                         <KeyCodeCombination alt="UP" code="P" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="systemLogout" mnemonicParsing="false" onAction="#systemLogoutFired" text="Logout">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="U" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
                   <MenuItem fx:id="systemExit" mnemonicParsing="false" onAction="#systemExitFired" text="Exit">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="X" control="ANY" meta="UP" shift="UP" shortcut="UP" />
