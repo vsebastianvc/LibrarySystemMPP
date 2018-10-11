@@ -85,8 +85,8 @@ public class SystemController {
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBook.fxml"));
 			this.contentPanel.getChildren().clear();
-			this.contentPanel.getChildren().add(page);
 			setFormInfo("Add New Book","Use to add a new Book. Enter Book information.","/view/AddBook.PNG");
+			this.contentPanel.getChildren().add(page);
 			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -131,16 +131,6 @@ public class SystemController {
 
 	@FXML // fx:id="btnCheckin"
 	private Button btnCheckin;
-
-	@FXML
-	void checkinBook(ActionEvent event) {
-		try {
-			valISBN(fieldCheckinISBN.getText());
-		} catch (ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-		}
-		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
-	}
 
 	// Query overdue
 	@FXML // fx:id="fieldQueryOverdueISBN"
@@ -213,13 +203,12 @@ public class SystemController {
 			return;
 		}
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOut.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/checkOut.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Check Out Form","Use to check out a book from Library. Enter Member Id and Book's ISBN.","/view/CheckOut.PNG");
 			System.out.println("Agregado el panel Check Out");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -238,7 +227,6 @@ public class SystemController {
 			setFormInfo("Check In Form","Use to check in a book from Library. Enter Book's ISBN.","/view/CheckIn.PNG");
 			System.out.println("Agregado el panel Check In");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

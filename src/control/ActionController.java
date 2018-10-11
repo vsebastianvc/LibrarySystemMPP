@@ -87,6 +87,16 @@ public class ActionController {
 		}
 	}
 
+	@FXML
+	void checkinBook(ActionEvent event) {
+		try {
+			valISBN(fieldCheckinISBN.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
+		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
+	}
+
 
 	@FXML
 	void printCheckoutRecord(ActionEvent event) {
