@@ -52,17 +52,7 @@ public class ActionController {
 		DataAccess db = new DataAccessFacade();
 		HashMap<String, LibraryMember> list_members = db.readMemberMap();
 		HashMap<String, Book> books = db.readBooksMap();
-
-		if (list_members.get(fieldCheckoutMemberId.getText()) == null) {
-			Util.showAlert("Member Id Not found", "Not data found", AlertType.WARNING);
-			return;
-		}
 		Book temp_book = books.get(fieldCheckoutISBN.getText());
-
-		if (temp_book == null) {
-			Util.showAlert("Book isbn No found", "Not data found", AlertType.WARNING);
-			return;
-		} else {
 			if (temp_book.isAvailable()) {
 				BookCopy bc = temp_book.getNextAvailableCopy();
 
@@ -92,17 +82,16 @@ public class ActionController {
 				Util.showAlert("No available copy for the book", "Not data found", AlertType.ERROR);
 				return;
 			}
-		}
 	}
 
 	@FXML
 	void checkinBook(ActionEvent event) {
-		try {
-			valISBN(fieldCheckinISBN.getText());
-		} catch (ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-		}
-		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
+//		try {
+////			valISBN(fieldCheckinISBN.getText());
+//		} catch (ValException e) {
+//			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+//		}
+////		System.out.printf("Checkin book with: ISBN: %s \n", fieldCheckinISBN.getText());
 	}
 
 

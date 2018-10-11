@@ -141,6 +141,10 @@ public class SystemController {
 
 	@FXML
 	void queryOverdue(ActionEvent event) {
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
+			Util.showAlert("Librarian cannot view overdue", "Permission denied", AlertType.ERROR);
+			return;
+		}
 		try {
 			valISBN(fieldQueryOverdueISBN.getText());
 		} catch (ValException e) {
@@ -199,7 +203,7 @@ public class SystemController {
 	@FXML
 	void checkOutFired(ActionEvent event) {
 		System.out.println("Check Out");
-		if (Util.getInstanceUser().isSuperUser()) {
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.ADMIN)) {
 			Util.showAlert("Admin can not checkout Books", "Permission denied", AlertType.ERROR);
 			return;
 		}
