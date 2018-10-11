@@ -14,8 +14,8 @@
       <Label layoutX="111.0" layoutY="68.0" text="ISBN:" />
       <Label layoutX="112.0" layoutY="116.0" text="Title:" />
       <Label layoutX="110.0" layoutY="158.0" text="Authors:" />
-      <Label layoutX="111.0" layoutY="300.0" text="Max. checkout:" />
-      <Label layoutX="450.0" layoutY="300.0" text="Number of copies:" />
+      <Label layoutX="111.0" layoutY="316.0" text="Max. checkout:" />
+      <Label layoutX="450.0" layoutY="316.0" text="Number of copies:" />
       <TextField fx:id="fieldNewBookISBN" layoutX="217.0" layoutY="63.0" />
       <TextField fx:id="fieldNewBookTitle" layoutX="217.0" layoutY="111.0" prefHeight="31.0" prefWidth="411.0" />
       <TableView fx:id="fieldNewBookAuthors" editable="true" layoutX="110.0" layoutY="179.0" prefHeight="99.0" prefWidth="759.0" tableMenuButtonVisible="true">
@@ -30,7 +30,8 @@
             <TableColumn fx:id="biography" editable="true" prefWidth="153.0" text="Biography" />
         </columns>
       </TableView>
-      <ComboBox fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="295.0" prefHeight="31.0" prefWidth="74.0" value="7">
+      <Button fx:id="btnCreateNewAuthor" layoutX="771.0" layoutY="278.0" mnemonicParsing="false" onAction="#createNewAuthor" text="Add Author" />
+      <ComboBox fx:id="choiceNewBookMaxCheckout" layoutX="217.0" layoutY="311.0" prefHeight="31.0" prefWidth="74.0" value="7">
          	  <items>
          		<FXCollections fx:factory="observableArrayList">
                  <String fx:value="7" />
@@ -38,7 +39,7 @@
                </FXCollections>
              </items>
            </ComboBox>
-      <TextField fx:id="fieldNewBookNumCopies" layoutX="580.0" layoutY="295.0" prefHeight="31.0" prefWidth="47.0" />
+      <TextField fx:id="fieldNewBookNumCopies" layoutX="580.0" layoutY="311.0" prefHeight="31.0" prefWidth="47.0" />
       <Label layoutX="310.0" layoutY="300.0" text="days" />
       <Button fx:id="btnCreateNewBook" layoutX="356.0" layoutY="383.0" mnemonicParsing="false" onAction="#createNewBook" text="Create new book" />
    </children>

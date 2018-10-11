@@ -45,6 +45,8 @@ public class BookController implements Initializable {
 	private ComboBox<String> choiceNewBookMaxCheckout;
 	@FXML // fx:id="fieldNewBookNumCopies"
 	private TextField fieldNewBookNumCopies;
+	@FXML // fx:id="btnCreateNewAuthor"
+	private Button btnCreateNewAuthor;
 
 	@FXML // fx:id="createNewBook"
 	private Button btnCreateNewBook;
