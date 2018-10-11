@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.dataaccess.DataAccess;
 import model.dataaccess.DataAccessFacade;
@@ -41,8 +43,7 @@ public class LoginController extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
 		primaryStage.setTitle("Welcome to Library System");
 		Scene scene = new Scene(root);
-		//scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
-		String css = this.getClass().getResource("/view/login.css").toExternalForm(); 
+		String css = this.getClass().getResource("/view/Login.css").toExternalForm(); 
 		primaryStage.setScene(scene);
 		scene.getStylesheets().add(css);
 		primaryStage.show();
@@ -64,10 +65,12 @@ public class LoginController extends Application {
 			try {
 				page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/MainWindow.fxml"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
             Scene scene = new Scene(page);
+            primaryStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1400);
+            primaryStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 800);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Library System");
             primaryStage.show();
