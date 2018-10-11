@@ -69,8 +69,13 @@ public class LoginController extends Application {
 			}
 			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
             Scene scene = new Scene(page);
-            //primaryStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1400);
-            //primaryStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 800);
+            //double minX=primaryScreenBounds.getMinX();
+            //double minW=primaryScreenBounds.getWidth();
+            //double minY=primaryScreenBounds.getMinY();
+            //double minH=primaryScreenBounds.getHeight();
+            //System.out.printf("minX: %f minW: %f minY: %f minH: %f",minX, minW, minY, minH);
+            primaryStage.setX(0);
+            primaryStage.setY(0);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Library System");
             primaryStage.show();
