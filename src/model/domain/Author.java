@@ -15,6 +15,11 @@ final public class Author extends Person implements Serializable {
 	public String getBiography() {
 		return biography;
 	}
+	
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
 
 	@Override
 	public String toString() {
