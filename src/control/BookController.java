@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -30,7 +31,7 @@ public class BookController {
 	@FXML // fx:id="fieldNewBookTitle"
 	private TextField fieldNewBookTitle;
 	@FXML // fx:id="fieldNewBookAuthors"
-	private TextField fieldNewBookAuthors;
+	private TableView fieldNewBookAuthors;
 	@FXML // fx:id="choiceNewBookMaxCheckout"
 	private ComboBox<String> choiceNewBookMaxCheckout;
 	@FXML // fx:id="fieldNewBookNumCopies"
@@ -94,12 +95,13 @@ public class BookController {
 
 	public void valNoBookEmpty() throws ValException {
 		if (fieldNewBookISBN.getText() == null || fieldNewBookTitle.getText() == null
-				|| fieldNewBookAuthors.getText() == null
+				//|| fieldNewBookAuthors.getText() == null
 				|| choiceNewBookMaxCheckout.getSelectionModel().getSelectedItem() == null
 				|| fieldNewBookNumCopies.getText() == null)
 			throw new ValException("Book fields cannot be empty");
 		if (fieldNewBookISBN.getText().isEmpty() || fieldNewBookTitle.getText().isEmpty()
-				|| fieldNewBookAuthors.getText().isEmpty() || fieldNewBookNumCopies.getText().isEmpty())
+				//|| fieldNewBookAuthors.getText().isEmpty() 
+				||fieldNewBookNumCopies.getText().isEmpty())
 			throw new ValException("Book fields cannot be empty");
 	}
 

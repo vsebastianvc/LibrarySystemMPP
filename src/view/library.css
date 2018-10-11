@@ -5,3 +5,7 @@
 .label {
    -fx-text-fill: #000099;
 }
+
+.root {
+   -fx-background-image: url("login.jpg");
+}
