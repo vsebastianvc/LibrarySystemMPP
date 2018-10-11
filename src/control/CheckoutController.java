@@ -60,7 +60,7 @@ public class CheckoutController implements Initializable{
         fieldCheckRecBookGrid.getColumns().get(0).setText("1001");
         fieldCheckRecBookGrid.getColumns().get(1).setText("Mi vida secreta");
         fieldCheckRecBookGrid.getColumns().get(2).setText("10-oct-2018");
-        fieldCheckRecBookGrid.getColumns().get(0).setText("31-oct-2018");
+        fieldCheckRecBookGrid.getColumns().get(3).setText("31-oct-2018");
     }
 
 }
