@@ -20,14 +20,14 @@
       <TextField fx:id="fieldNewBookTitle" layoutX="217.0" layoutY="111.0" prefHeight="31.0" prefWidth="411.0" />
       <TableView fx:id="fieldNewBookAuthors" editable="true" layoutX="110.0" layoutY="179.0" prefHeight="99.0" prefWidth="759.0" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="firstName" editable="true" prefWidth="100.0" text="First Name" />
-          <TableColumn fx:id="lastName" editable="true" prefWidth="98.0" text="Last Name" />
-            <TableColumn fx:id="phone" editable="true" prefWidth="103.0" text="Phone" />
-            <TableColumn fx:id="street" editable="true" prefWidth="88.0" text="Street" />
-            <TableColumn fx:id="city" editable="true" prefWidth="76.0" text="City" />
-            <TableColumn fx:id="state" editable="true" prefWidth="72.0" text="State" />
-            <TableColumn fx:id="zip" editable="true" prefWidth="66.0" text="Zip" />
-            <TableColumn fx:id="biography" editable="true" prefWidth="153.0" text="Biography" />
+          <TableColumn editable="true" prefWidth="100.0" fx:id="firstName" text="First Name" />
+          <TableColumn editable="true" prefWidth="98.0" fx:id="lastName" text="Last Name" />
+            <TableColumn editable="true" prefWidth="103.0" fx:id="phone" text="Phone" />
+            <TableColumn editable="true" prefWidth="88.0" fx:id="street" text="Street" />
+            <TableColumn editable="true" prefWidth="76.0" fx:id="city" text="City" />
+            <TableColumn editable="true" prefWidth="72.0" fx:id="state" text="State" />
+            <TableColumn editable="true" prefWidth="66.0" fx:id="columZip" text="Zip_Code" />
+            <TableColumn editable="true" prefWidth="153.0" fx:id="biography" text="Biography" />
         </columns>
       </TableView>
       <Button fx:id="btnCreateNewAuthor" layoutX="771.0" layoutY="278.0" mnemonicParsing="false" onAction="#createNewAuthor" text="Add Author" />

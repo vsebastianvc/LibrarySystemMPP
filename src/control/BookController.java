@@ -131,6 +131,11 @@ public class BookController implements Initializable {
 			throw new ValException("Book fields cannot be empty");
 	}
 
+	@FXML
+	void createNewAuthor(ActionEvent event) {
+
+	}
+
 	public void valNumCopies() throws ValException {
 		if (!fieldNewBookNumCopies.getText().matches("[0-9]{1,5}"))
 			throw new ValException("Invalid number of copies");
