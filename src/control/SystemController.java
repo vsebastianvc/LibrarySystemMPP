@@ -1,7 +1,9 @@
 package control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -11,14 +13,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.dataaccess.Auth;
 import model.dataaccess.DataAccess;
 import model.dataaccess.DataAccessFacade;
+import model.domain.Address;
+import model.domain.Author;
+import model.domain.Book;
 import model.domain.CheckoutRecordEntry;
 import model.domain.LibraryMember;
 import util.Util;
@@ -26,6 +35,13 @@ import util.ValException;
 
 public class SystemController {
 
+	@FXML // fx:id="fieldFormName"
+	private Label fieldFormName;
+	@FXML // fx:id="fieldFormDesc"
+	private Label fieldFormDesc;
+	@FXML // fx:id="fieldFormImage"
+	private ImageView fieldFormImage;
+	
 	@FXML // fx:id="menuCheckOut"
 	private MenuItem menuCheckOut;
 	@FXML // fx:id="menuCheckIn"
@@ -42,7 +58,22 @@ public class SystemController {
 	private MenuItem menuNewBook;
 	@FXML // fx:id="newBookCopy"
 	private MenuItem menuBookCopy;
-
+	
+	@FXML // fx:id="fieldCheckRecMemberID
+	private TextField fieldCheckRecMemberID;
+	@FXML // fx:id="fieldCheckRecMemberName
+	private TextField fieldCheckRecMemberName;
+	@FXML // fx:id="fieldCheckRecBookISBN
+	private TextField fieldCheckRecBookISBN;
+	@FXML // fx:id="fieldCheckRecBookName
+	private TextField fieldCheckRecBookName;
+	@FXML // fx:id="fieldCheckRecBookDateOut
+	private TextField fieldCheckRecBookDateOut;
+	@FXML // fx:id="fieldCheckRecBookGrid
+	private TableView fieldCheckRecBookGrid;
+	
+	@FXML // fx:id="btnCheckRecDone"
+	private Button btnCheckRecDone;
 
 	@FXML
 	void newBookFired(ActionEvent event) {
@@ -141,9 +172,16 @@ public class SystemController {
 	 */
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
+		//setFormInfo("Main Menu","Choose a menu option or use shortcuts (ctrl+key) to access options.","/view/Book.PNG");
 		System.out.println("Initializing");
 	}
 
+	void setFormInfo(String title, String desc, String image) {
+		fieldFormName.setText(title);
+		fieldFormDesc.setText(desc);
+		fieldFormImage.setImage(new Image(image));
+	}
+	
 	@FXML
 	void systemExitFired(ActionEvent event) {
 		System.out.println("Exit");
@@ -176,13 +214,39 @@ public class SystemController {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOut.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
-			System.out.println("Agregado el panel");
+			setFormInfo("Check Out Form","Use to check out a book from Library. Enter Member Id and Book's ISBN.","/view/CheckOut.PNG");
+			System.out.println("Agregado el panel Check Out");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+
+	@FXML
+	void showCheckOutRecord() {
+		List<Author> aut1 = new ArrayList<Author>();
+		aut1.add(new Author( "Carlos", "Hernandez", "+57 3004633523", new Address("1000 N 4St","Fairfield","IOWA","52557"), "Lealo"));
+		LibraryMember lm1 = new LibraryMember("1001", "Carlos", "Hernandez", "+57 3004633523", new Address("1000 N 4St","Fairfield","IOWA","52557"));
+		Book b1 = new Book("BK-001", "Mi vida secreta",21,aut1);
+		
+		System.out.println("Show Check Out Record");
+		try {
+			FXMLLoader loader =  new FXMLLoader(getClass().getResource("/view/CheckoutRecord.fxml"));
+			CheckoutController controller = new CheckoutController(lm1.getMemberId(), lm1.getFullName());
+	        // Set it in the FXMLLoader
+	        loader.setController(controller);
+			AnchorPane page = (AnchorPane)loader.load();
+			this.contentPanel.getChildren().clear();
+			this.contentPanel.getChildren().add(page);
+			setFormInfo("Check Out Record","Book check out done!. Press Return button.","/view/Reading.PNG");
+			System.out.println("Agregado el panel Check Out Record");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@FXML
 	void checkInFired(ActionEvent event) {
 		System.out.println("Check In");
@@ -190,7 +254,7 @@ public class SystemController {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckIn.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
-			System.out.println("Agregado el panel");
+			System.out.println("Agregado el panel Check In");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
