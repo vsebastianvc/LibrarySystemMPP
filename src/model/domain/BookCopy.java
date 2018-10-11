@@ -98,7 +98,7 @@ final public class BookCopy implements Serializable{
 
 	@Override
 	public String toString() {
-		return "BookCopy [book=" + book + ", copyNum=" + copyNum + ", isAvailable=" + isAvailable + "]";
+		return book!=null?this.getCopyNum()+ " | " + book.getIsbn() +" | "+ book.getTitle():"There's no book associated to this copy!";
 	}
 
 }

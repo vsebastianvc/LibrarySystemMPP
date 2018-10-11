@@ -80,26 +80,7 @@ public class SystemController {
 		}
 	}
 
-	// Checkout screen items
-	@FXML // fx:id="fieldCheckoutISBN"
-	private TextField fieldCheckoutISBN;
-	@FXML // fx:id="fieldCheckoutMemberId"
-	private TextField fieldCheckoutMemberId;
 
-	@FXML // fx:id="btnCheckout"
-	private Button btnCheckout;
-
-	@FXML
-	void checkoutBook(ActionEvent event) {
-		try {
-			valMemberID(fieldCheckoutMemberId.getText());
-			valISBN(fieldCheckoutISBN.getText());
-		} catch (ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-		}
-		System.out.printf("Checkout book with: ISBN: %s for member id: %s \n", fieldCheckoutISBN.getText(),
-				fieldCheckoutMemberId.getText());
-	}
 
 	public void valISBN(String isbn) throws ValException {
 		if (isbn == null || isbn.isEmpty())
@@ -171,7 +152,7 @@ public class SystemController {
 		System.out.println("=====================================================");
 		if(member != null && member.getCheckoutRecordEntries()!=null) {
 			for (CheckoutRecordEntry entry : member.getCheckoutRecordEntries()) {
-				System.out.println(entry.getBookcopy().toString()+" | "+entry.getCheckoutDate().toString()+" | "+entry.getDueDate().toString());
+				System.out.println(entry.getBookcopy()+" | "+entry.getCheckoutDateString()+" | "+entry.getDuedateString());
 			}
 		} else {
 			Util.showAlert("Member id Not found", "Error", AlertType.ERROR);
@@ -221,6 +202,10 @@ public class SystemController {
 	@FXML
 	void checkOutFired(ActionEvent event) {
 		System.out.println("Check Out");
+		if (Util.getInstanceUser().isSuperUser()) {
+			Util.showAlert("Admin can not checkout Book", "Permission denied", AlertType.ERROR);
+			return;
+		}
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOut.fxml"));
 			this.contentPanel.getChildren().clear();

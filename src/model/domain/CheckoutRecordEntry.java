@@ -1,7 +1,9 @@
 package model.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CheckoutRecordEntry implements Serializable {
 	private static final long serialVersionUID = 659783906422028230L;
@@ -46,6 +48,15 @@ public class CheckoutRecordEntry implements Serializable {
 	public LibraryMember getMember() {
 		// TODO Auto-generated method stub
 		return member;
+	}
+	public String getDuedateString() {
+		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		return dueDate!=null?dueDate.format(pattern):"";
+	}
+	
+	public String getCheckoutDateString() {
+		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		return checkoutDate!=null?checkoutDate.format(pattern):"";
 	}
 
 }

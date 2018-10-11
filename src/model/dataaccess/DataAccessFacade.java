@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import model.dataaccess.DataAccessFacade.StorageType;
+import model.domain.Author;
 import model.domain.Book;
 import model.domain.LibraryMember;
 import model.domain.User;
@@ -17,7 +19,7 @@ import model.domain.User;
 public class DataAccessFacade implements DataAccess {
 
 	enum StorageType {
-		BOOKS, MEMBERS, USERS;
+		BOOKS, MEMBERS, USERS, AUTHORS;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir")
@@ -30,6 +32,12 @@ public class DataAccessFacade implements DataAccess {
 		String memberId = member.getMemberId();
 		mems.put(memberId, member);
 		saveToStorage(StorageType.MEMBERS, mems);
+	}
+	public void saveNewAuthor(Author author) {
+		HashMap<String, Author> mems = readAuthorMap();
+		String lastName = author.getLastName();
+		mems.put(lastName, author);
+		saveToStorage(StorageType.AUTHORS, mems);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -54,6 +62,11 @@ public class DataAccessFacade implements DataAccess {
 		//   userId -> User
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
+	public HashMap<String, Author> readAuthorMap() {
+		//Returns a Map with name/value pairs being
+		//   userId -> User
+		return (HashMap<String, Author>)readFromStorage(StorageType.AUTHORS);
+	}
 
 
 	/////load methods - these place test data into the storage area
@@ -61,7 +74,8 @@ public class DataAccessFacade implements DataAccess {
 	//static void loadMemberMap(List<LibraryMember> memberList) {
 
 	static void loadBookMap(List<Book> bookList) {
-		HashMap<String, Book> books = new HashMap<String, Book>();
+		@SuppressWarnings("unchecked")
+		HashMap<String, Book> books = (HashMap<String, Book>) readFromStorage(StorageType.BOOKS); 
 		bookList.forEach(book -> books.put(book.getIsbn(), book));
 		saveToStorage(StorageType.BOOKS, books);
 	}
@@ -69,6 +83,11 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, User> users = new HashMap<String, User>();
 		userList.forEach(user -> users.put(user.getId(), user));
 		saveToStorage(StorageType.USERS, users);
+	}
+	static void loadAuthorMap(List<Author> authorList) {
+		HashMap<String, Author> author = new HashMap<String, Author>();
+		authorList.forEach(authors -> author.put(authors.getLastName(), authors));
+		saveToStorage(StorageType.AUTHORS, author);
 	}
 
 	static void loadMemberMap(List<LibraryMember> memberList) {

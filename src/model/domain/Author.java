@@ -16,4 +16,12 @@ final public class Author extends Person implements Serializable {
 		return biography;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() +", biography " + biography;
+	}
+
+
+	
+
 }

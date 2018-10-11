@@ -36,6 +36,7 @@ public class TestData {
 			add(new Author("Andrew", "Cleveland", "976-445-2232", addresses.get(2), "Author of childrens' books."));
 			add(new Author("Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
 		}
+		
 	};
 
 	@SuppressWarnings("serial")
@@ -63,9 +64,11 @@ public class TestData {
 		td.bookData();
 		td.libraryMemberData();
 		td.userData();
+		td.authorData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
+		System.out.println(da.readAuthorMap());
 	}
 
 	/// create books
@@ -81,6 +84,9 @@ public class TestData {
 
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
+	}
+	public void authorData() {
+		DataAccessFacade.loadAuthorMap(allAuthors);
 	}
 
 	// create library members

@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import model.dataaccess.DataAccess;
 import model.dataaccess.DataAccessFacade;
+import model.domain.Author;
 import model.domain.Book;
 import model.domain.BookCopy;
 import model.domain.LibraryMember;
@@ -39,7 +40,7 @@ public class BookController {
 
 	@FXML // fx:id="btnCreateNewBookCopy"
 	private Button btnCreateNewBookCopy;
-	
+
 	@FXML
 	private AnchorPane panelAddCopy;
 
@@ -47,38 +48,31 @@ public class BookController {
 	void createNewBookCopy(ActionEvent event) {
 		DataAccess db = new DataAccessFacade();
 		HashMap<String, Book> books = db.readBooksMap();
+		Book book = books.get(fieldNewCopyISBN.getText());
 		try {
 			valISBN(fieldNewCopyISBN.getText());
+			if (book == null) {
+				Util.showAlert("Book not found, please check ", "Error", AlertType.ERROR);
+			} else {
+				System.out.println(book.addCopy());
+				db.saveAbook(book);
+				this.panelAddCopy.getChildren().clear();
+				System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
+//				for (BookCopy bookCopy : book.getCopies()) {
+//					System.out.println("Numero" + bookCopy);
+//				}
+			}
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 			return;
 		}
-		Book book = books.get(fieldNewCopyISBN.getText());
-		if (book == null) {
-			Util.showAlert("Book not found, please check ", "Error", AlertType.ERROR);
-		} else {
-			book.addCopy();
-			db.saveAbook(book);
-			DataAccess dbTest = new DataAccessFacade();
-			HashMap<String, Book> booksTest = dbTest.readBooksMap();
-			
-			Book bookTest = booksTest.get(fieldNewCopyISBN.getText());
-			for (BookCopy bookCopy : bookTest.getCopies()) {
 
-				System.out.println("Check User: " + bookCopy);
-
-			}
-			
-			this.panelAddCopy.getChildren().clear();
-			System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
-		}
 	}
-	
+
 	public void valISBN(String isbn) throws ValException {
 		if (isbn == null || isbn.isEmpty())
 			throw new ValException("Invalid Book's ISBN");
 	}
-
 
 	@FXML
 	void createNewBook(ActionEvent event) {
@@ -89,6 +83,8 @@ public class BookController {
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 		}
+//		DataAccess db = new DataAccessFacade();
+//		Author author = new 
 	}
 
 	public void valNoBookEmpty() throws ValException {
