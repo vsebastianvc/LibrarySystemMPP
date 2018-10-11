@@ -169,6 +169,7 @@ public class SystemController {
 	}
 
 	void setFormInfo(String title, String desc, String image) {
+		System.out.println("Title: "+title);
 		fieldFormName.setText(title);
 		fieldFormDesc.setText(desc);
 		fieldFormImage.setImage(new Image(image));
