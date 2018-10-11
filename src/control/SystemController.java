@@ -126,40 +126,6 @@ public class SystemController {
 		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
 	}
 	
-
-	// Print checkout record
-	@FXML // fx:id="fieldPrintCheckoutMemberID"
-	private TextField fieldPrintCheckoutMemberID;
-
-	@FXML // fx:id="btnPrintCheckoutRecord"
-	private Button btnPrintCheckoutRecord;
-
-	@FXML
-	void printCheckoutRecord(ActionEvent event) {
-		DataAccess db = new DataAccessFacade();
-		HashMap<String, LibraryMember> users = db.readMemberMap();
-		try {
-			valMemberID(fieldPrintCheckoutMemberID.getText());
-		} catch (ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-			return;
-		}
-		LibraryMember member = users.get(fieldPrintCheckoutMemberID.getText());
-		System.out.printf("Print checkout record of member id: %s \n", fieldPrintCheckoutMemberID.getText());
-		System.out.println("Sending to printer ....");
-		System.out.println("=====================================================");
-		System.out.println("Copy number | ISBN | Title"+" | Checkout date | Due date");
-		System.out.println("=====================================================");
-		if(member != null && member.getCheckoutRecordEntries()!=null) {
-			for (CheckoutRecordEntry entry : member.getCheckoutRecordEntries()) {
-				System.out.println(entry.getBookcopy()+" | "+entry.getCheckoutDateString()+" | "+entry.getDuedateString());
-			}
-		} else {
-			Util.showAlert("Member id Not found", "Error", AlertType.ERROR);
-		}
-		System.out.println("=====================================================");
-		System.out.println("Printer - Finish");
-	}
 	
 	@FXML // fx:id="newIssue"
 	private Button btnNewIssue; // Value injected by FXMLLoader
