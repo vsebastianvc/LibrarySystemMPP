@@ -132,8 +132,10 @@ public class BookController implements Initializable {
 //		fieldNewBookAuthors.setEditable(true);
 		DataAccess db = new DataAccessFacade();
 		Book book = new Book(fieldNewBookISBN.getText(), fieldNewBookTitle.getText(),
-				Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors,
-				Integer.parseInt(fieldNewBookNumCopies.getText()));
+				Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors);
+		for (int i = 1; i < Integer.parseInt(fieldNewBookNumCopies.getText()); i++) {
+			book.addCopy();
+		}
 		db.saveAbook(book);
 
 		DataAccess dbTest = new DataAccessFacade();

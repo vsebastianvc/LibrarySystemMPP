@@ -96,7 +96,7 @@ public class SystemController {
 
 	@FXML
 	void newBookFired(ActionEvent event) {
-		System.out.println("New Book");
+//		System.out.println("New Book");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
 			Util.showAlert("Librarian cannot add a Book", "Permission denied", AlertType.ERROR);
 			return;
@@ -110,7 +110,7 @@ public class SystemController {
 			this.contentPanel.getChildren().clear();
 			setFormInfo("Add New Book","Use to add a new Book. Enter Book information.","/view/AddBook.PNG");
 			this.contentPanel.getChildren().add(page);
-			System.out.println("Agregado el panel");
+//			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,7 +119,7 @@ public class SystemController {
 
 	@FXML
 	void newBookCopyFired(ActionEvent event) {
-		System.out.println("New Book Copy");
+//		System.out.println("New Book Copy");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
 			Util.showAlert("Librarian cannot add a Book Copy", "Permission denied", AlertType.ERROR);
 			return;
@@ -133,7 +133,7 @@ public class SystemController {
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Add New Book Copy","Use to add another copy of a Book. Enter Book's ISBN.","/view/NewBookCopy.PNG");
-			System.out.println("Agregado el panel");
+//			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -155,11 +155,11 @@ public class SystemController {
 	 */
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
-		System.out.println("Initializing");
+//		System.out.println("Initializing");
 	}
 
 	void setFormInfo(String title, String desc, String image) {
-		System.out.println("Title: "+title);
+//		System.out.println("Title: "+title);
 		fieldFormName.setText(title);
 		fieldFormDesc.setText(desc);
 		fieldFormImage.setImage(new Image(image));
@@ -167,7 +167,7 @@ public class SystemController {
 	
 	@FXML
 	void systemLogoutFired(ActionEvent event) {
-		System.out.println("Exit");
+//		System.out.println("Exit");
 		Stage stage = new Stage();
 		stage.setTitle("Welcome Library System");
 		Pane myPane = null;
@@ -193,7 +193,7 @@ public class SystemController {
 
 	@FXML
 	void checkOutFired(ActionEvent event) {
-		System.out.println("Check Out");
+//		System.out.println("Check Out");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.ADMIN)) {
 			Util.showAlert("Admin can not checkout Books", "Permission denied", AlertType.ERROR);
 			return;
@@ -211,7 +211,7 @@ public class SystemController {
 
 	@FXML
 	void checkInFired(ActionEvent event) {
-		System.out.println("Check In");
+//		System.out.println("Check In");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.ADMIN)) {
 			Util.showAlert("Admin can not checkout Books", "Permission denied", AlertType.ERROR);
 			return;
@@ -221,7 +221,7 @@ public class SystemController {
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Check In Form","Use to check in a book from Library. Enter Book's ISBN.","/view/CheckIn.PNG");
-			System.out.println("Agregado el panel Check In");
+//			System.out.println("Agregado el panel Check In");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -229,13 +229,13 @@ public class SystemController {
 	
 	@FXML
 	void queryOverdueFired(ActionEvent event) {
-		System.out.println("Query Overdue");
+//		System.out.println("Query Overdue");
 		try {
 			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/showBook.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Query Overdue","Use to check for books already had to be returned to library. Enter Book's ISBN.","/view/QueryOverdue.PNG");
-			System.out.println("Agregado el panel");
+//			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -243,7 +243,7 @@ public class SystemController {
 
 	@FXML
 	void newMemberFired(ActionEvent event) {
-		System.out.println("New Member");
+//		System.out.println("New Member");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
 			Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
 			return;
@@ -253,7 +253,7 @@ public class SystemController {
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("New Member","Use add a Library Member. Enter Member information.","/view/NewMember.PNG");
-			System.out.println("Agregado el panel");
+//			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -261,7 +261,7 @@ public class SystemController {
 
 	@FXML
 	void printCheckoutRecordFired(ActionEvent event) {
-		System.out.println("Print checkout");
+//		System.out.println("Print checkout");
 		if (Util.getInstanceUser().getAuthorization().equals(Auth.ADMIN)) {
 			Util.showAlert("Admin can not print checkout record", "Permission denied", AlertType.ERROR);
 			return;
@@ -271,7 +271,7 @@ public class SystemController {
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Print Checkout Record","Use to print checkout's member history. Enter Member ID.","/view/CheckoutHistory.PNG");
-			System.out.println("Agregado el panel");
+//			System.out.println("Agregado el panel");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -287,7 +287,7 @@ public class SystemController {
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 		}
-		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
+//		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
 	}
 
 }
