@@ -39,6 +39,9 @@ public class ActionController {
 	@FXML // fx:id="btnPrintCheckoutRecord"
 	private Button btnPrintCheckoutRecord;
 	
+	@FXML
+	private AnchorPane panelPrintCheckoutRecord;
+	
 	
 	
 	@FXML
@@ -130,6 +133,7 @@ public class ActionController {
 		}
 		System.out.println("=====================================================");
 		System.out.println("Printer - Finish");
+		this.panelPrintCheckoutRecord.getChildren().clear();
 	}
 	
 	

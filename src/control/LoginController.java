@@ -80,7 +80,7 @@ public class LoginController extends Application {
             primaryStage.setTitle("Library System");
             primaryStage.show();
 //            System.out.println("Persist USER: "+Util.getInstanceUser());
-			System.out.println("LOGIN SUCCESS");
+//			System.out.println("LOGIN SUCCESS");
 		
 		} else {
 			Util.showAlert("User id or password Wrong ", "Error login", AlertType.ERROR);

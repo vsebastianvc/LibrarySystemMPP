@@ -203,7 +203,7 @@ public class SystemController {
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Check Out Form","Use to check out a book from Library. Enter Member Id and Book's ISBN.","/view/CheckOut.PNG");
-			System.out.println("Agregado el panel Check Out");
+//			System.out.println("Agregado el panel Check Out");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

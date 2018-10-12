@@ -105,10 +105,10 @@ public class BookController implements Initializable {
 			if (book == null) {
 				Util.showAlert("Book not found, please check ", "Error", AlertType.ERROR);
 			} else {
-				System.out.println(book.addCopy());
+//				System.out.println(book.addCopy());
 				db.saveAbook(book);
 				this.panelAddCopy.getChildren().clear();
-				System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
+//				System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
 //				for (BookCopy bookCopy : book.getCopies()) {
 //					System.out.println("Numero" + bookCopy);
 //				}
@@ -126,24 +126,25 @@ public class BookController implements Initializable {
 		try {
 			valNoBookEmpty();
 			valNumCopies();
+			fieldNewBookAuthors.setEditable(true);
+			DataAccess db = new DataAccessFacade();
+			Book book = new Book(fieldNewBookISBN.getText(), fieldNewBookTitle.getText(),
+					Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors);
+			for (int i = 1; i < Integer.parseInt(fieldNewBookNumCopies.getText()); i++) {
+				book.addCopy();
+			}
+			db.saveAbook(book);
+
+			DataAccess dbTest = new DataAccessFacade();
+			HashMap<String, Book> books = dbTest.readBooksMap();
+			Book book1 = books.get(fieldNewBookISBN.getText());
+//			System.out.println("BOOK " + book1.toStringNewBook());
+//			Util.showAlert(book1.toStringNewBook(), "CREATED", AlertType.INFORMATION);
+			this.panelAddBook.getChildren().clear();
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 		}
-//		fieldNewBookAuthors.setEditable(true);
-		DataAccess db = new DataAccessFacade();
-		Book book = new Book(fieldNewBookISBN.getText(), fieldNewBookTitle.getText(),
-				Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors);
-		for (int i = 1; i < Integer.parseInt(fieldNewBookNumCopies.getText()); i++) {
-			book.addCopy();
-		}
-		db.saveAbook(book);
-
-		DataAccess dbTest = new DataAccessFacade();
-		HashMap<String, Book> books = dbTest.readBooksMap();
-		Book book1 = books.get(fieldNewBookISBN.getText());
-//		System.out.println("BOOK " + book1.toStringNewBook());
-//		Util.showAlert(book1.toStringNewBook(), "CREATED", AlertType.INFORMATION);
-		this.panelAddBook.getChildren().clear();
+//		
 	}
 
 	@FXML

@@ -56,10 +56,10 @@ public class MemberController {
 					fieldNewLastName.getText(), fieldNewTelNumber.getText(), add);
 			db.saveNewMember(lm);
 
-			DataAccess dbTest = new DataAccessFacade();
-			HashMap<String, LibraryMember> users = dbTest.readMemberMap();
-			LibraryMember user = users.get(fieldNewMemberId.getText());
-			System.out.println("Check User: " + user);
+//			DataAccess dbTest = new DataAccessFacade();
+//			HashMap<String, LibraryMember> users = dbTest.readMemberMap();
+//			LibraryMember user = users.get(fieldNewMemberId.getText());
+//			System.out.println("Check User: " + user);
 			this.panelNewMember.getChildren().clear();
 //			System.out.printf(
 //					"Add member with: ID: %s, First name: %s, Last name: %s, Tel number: %s, Street: %s, State: %s, City: %s, Zip: %s \n",
