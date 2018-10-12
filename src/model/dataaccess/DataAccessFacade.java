@@ -75,9 +75,12 @@ public class DataAccessFacade implements DataAccess {
 
 	static void loadBookMap(List<Book> bookList) {
 		@SuppressWarnings("unchecked")
-		HashMap<String, Book> books = (HashMap<String, Book>) readFromStorage(StorageType.BOOKS); 
+//		HashMap<String, Book> books = new HashMap<String,Book>(); 
+		HashMap<String, Book> books =(HashMap<String, Book>) readFromStorage(StorageType.BOOKS);
 		bookList.forEach(book -> books.put(book.getIsbn(), book));
 		saveToStorage(StorageType.BOOKS, books);
+		
+		
 	}
 	static void loadUserMap(List<User> userList) {
 		HashMap<String, User> users = new HashMap<String, User>();
