@@ -106,6 +106,7 @@ public class BookController implements Initializable {
 				Util.showAlert("Book not found, please check ", "Error", AlertType.ERROR);
 			} else {
 //				System.out.println(book.addCopy());
+				book.addCopy();
 				db.saveAbook(book);
 				this.panelAddCopy.getChildren().clear();
 //				System.out.printf("Add book copy with: ISBN: %s \n", fieldNewCopyISBN.getText());
