@@ -66,34 +66,34 @@ public class BookController implements Initializable {
 	@FXML
 	private AnchorPane panelAddCopy;
 
+	@FXML
+	private TableColumn<Author, String> firstName;
+	@FXML
+	private TableColumn<Author, String> lastName;
+	@FXML
+	private TableColumn<Author, String> phone;
+	@FXML
+	private TableColumn<Author, String> street;
+	@FXML
+	private TableColumn<Author, String> city;
+	@FXML
+	private TableColumn<Author, String> state;
+	@FXML
+	private TableColumn<Author, String> columZip;
+	@FXML
+	private TableColumn<Author, String> biography;
+
+	private ObservableList<Author> data;
+
+	private List<Author> authors = new ArrayList<>();
+	
+	@FXML 
+	private AnchorPane panelAddBook;
+	
 	public BookController(String viewType) {
 		// TODO Auto-generated constructor stub
 		this.viewType = viewType;
 	}
-
-	@FXML
-	TableColumn<Author, String> firstName;
-	@FXML
-	TableColumn<Author, String> lastName;
-	@FXML
-	TableColumn<Author, String> phone;
-	@FXML
-	TableColumn<Author, String> street;
-	@FXML
-	TableColumn<Author, String> city;
-	@FXML
-	TableColumn<Author, String> state;
-	@FXML
-	TableColumn<Author, String> columZip;
-	@FXML
-	TableColumn<Author, String> biography;
-
-	ObservableList<Author> data;
-
-	List<Author> authors = new ArrayList<>();
-	
-	@FXML 
-	private AnchorPane panelAddBook;
 
 	@FXML
 	void createNewBookCopy(ActionEvent event) {

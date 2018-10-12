@@ -22,19 +22,19 @@ public class OverdueController implements Initializable {
 	@FXML // fx:id="fieldCheckRecBookGrid
 	private TableView<BookCopy> tableOverdue;
 	@FXML
-	TableColumn<BookCopy, String> ISBN;
+	private TableColumn<BookCopy, String> ISBN;
 	@FXML
-	TableColumn<BookCopy, String> BookName;
+	private TableColumn<BookCopy, String> BookName;
 	@FXML
-	TableColumn<BookCopy, String> numberCopy;
+	private TableColumn<BookCopy, String> numberCopy;
 	@FXML
-	TableColumn<BookCopy, String> isAvailable;
+	private TableColumn<BookCopy, String> isAvailable;
 	@FXML
-	TableColumn<BookCopy, String> overdue;
+	private TableColumn<BookCopy, String> overdue;
 	@FXML
-	TableColumn<BookCopy, String> possesion;
+	private TableColumn<BookCopy, String> possesion;
 
-	ObservableList<BookCopy> data;
+	private ObservableList<BookCopy> data;
 
 	private Book book;
 

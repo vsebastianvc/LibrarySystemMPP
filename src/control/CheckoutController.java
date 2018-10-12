@@ -35,15 +35,15 @@ public class CheckoutController implements Initializable {
 	@FXML // fx:id="fieldCheckRecBookGrid
 	private TableView<CheckoutRecordEntry> fieldCheckRecBookGrid;
 	@FXML
-	TableColumn<CheckoutRecordEntry, String> ISBN;
+	private TableColumn<CheckoutRecordEntry, String> ISBN;
 	@FXML
-	TableColumn<CheckoutRecordEntry, String> BookName;
+	private TableColumn<CheckoutRecordEntry, String> BookName;
 	@FXML
-	TableColumn<CheckoutRecordEntry, String> DateOut;
+	private TableColumn<CheckoutRecordEntry, String> DateOut;
 	@FXML
-	TableColumn<CheckoutRecordEntry, String> DueDate;
+	private TableColumn<CheckoutRecordEntry, String> DueDate;
 
-	ObservableList<CheckoutController> data;
+	private ObservableList<CheckoutController> data;
 
 	@FXML // fx:id="btnCheckRecDone"
 	private Button btnCheckRecDone;

@@ -27,13 +27,13 @@ public class ShowBookController implements Initializable {
 	@FXML // fx:id="fieldCheckRecBookGrid
 	private TableView<Book> tableShowBook;
 	@FXML
-	TableColumn<Book, String> ISBN; 
+	private TableColumn<Book, String> ISBN; 
 	@FXML
-	TableColumn<Book, String> BookName;
+	private TableColumn<Book, String> BookName;
 	@FXML
-	TableColumn<Book, String> maxCheckoutDate;
+	private TableColumn<Book, String> maxCheckoutDate;
 
-	ObservableList<Book> data;
+	private ObservableList<Book> data;
 
 	@FXML // fx:id="btnCheckRecDone"
 	private Button btnCheckRecDone;
