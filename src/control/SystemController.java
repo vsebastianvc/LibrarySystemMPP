@@ -102,7 +102,11 @@ public class SystemController {
 			return;
 		}
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBook.fxml"));
+//			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBook.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addBook.fxml"));
+			 BookController book= new BookController("new");
+			 loader.setController(book);
+			AnchorPane page = (AnchorPane) loader.load();
 			this.contentPanel.getChildren().clear();
 			setFormInfo("Add New Book","Use to add a new Book. Enter Book information.","/view/AddBook.PNG");
 			this.contentPanel.getChildren().add(page);
@@ -121,7 +125,11 @@ public class SystemController {
 			return;
 		}
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/addBookCopy.fxml"));
+			 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addBookCopy.fxml"));
+			 BookController book= new BookController("copy");
+			 loader.setController(book);
+			AnchorPane page = (AnchorPane) loader.load();
+			
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Add New Book Copy","Use to add another copy of a Book. Enter Book's ISBN.","/view/NewBookCopy.PNG");

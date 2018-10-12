@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.sun.media.sound.FFT;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,17 +32,20 @@ import model.dataaccess.DataAccessFacade;
 import model.domain.Address;
 import model.domain.Author;
 import model.domain.Book;
+import model.domain.LibraryMember;
 import util.Util;
 import util.ValException;
 
 public class BookController implements Initializable {
+	
+	private String viewType;
 	// New book screen items
 	@FXML // fx:id="fieldNewBookISBN"
 	private TextField fieldNewBookISBN;
 	@FXML // fx:id="fieldNewBookTitle"
 	private TextField fieldNewBookTitle;
 	@FXML // fx:id="fieldNewBookAuthors"
-	private TableView fieldNewBookAuthors;
+	private TableView<Author> fieldNewBookAuthors;
 	@FXML // fx:id="choiceNewBookMaxCheckout"
 	private ComboBox<String> choiceNewBookMaxCheckout;
 	@FXML // fx:id="fieldNewBookNumCopies"
@@ -61,6 +66,11 @@ public class BookController implements Initializable {
 	@FXML
 	private AnchorPane panelAddCopy;
 	
+	public BookController(String viewType) {
+		// TODO Auto-generated constructor stub
+		this.viewType=viewType;
+	}
+	
 	@FXML
 	TableColumn<Author, String> firstName;
 	@FXML
@@ -77,6 +87,10 @@ public class BookController implements Initializable {
 	TableColumn<Author, String> columZip;
 	@FXML
 	TableColumn<Author, String> biography;
+	
+	ObservableList<Author> data;
+	
+	List<Author> authors = new ArrayList<>();
 
 	@FXML
 	void createNewBookCopy(ActionEvent event) {
@@ -112,11 +126,24 @@ public class BookController implements Initializable {
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 		}
-//		DataAccess db = new DataAccessFacade();
-//		Author author = new 
-		fieldNewBookAuthors.setEditable(true);
-
+//		fieldNewBookAuthors.setEditable(true);
+		DataAccess db = new DataAccessFacade();
+		Book book = new Book(fieldNewBookISBN.getText(), fieldNewBookTitle.getText(), Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors);
+		db.saveAbook(book);
+		
+		
+		DataAccess dbTest = new DataAccessFacade();
+		HashMap<String, Book> books = dbTest.readBooksMap();
+		Book book1 = books.get(fieldNewBookISBN.getText());
+		System.out.println("BOOK " + book1);
         
+	}
+	@FXML
+	void createNewAuthor(ActionEvent event) {
+		Address a= new Address("", "", "", "");
+        authors.add(new Author("", "", "", a, ""));
+        data=FXCollections.observableArrayList(authors);
+        fieldNewBookAuthors.setItems(data);
 	}
 
 	public void valNoBookEmpty() throws ValException {
@@ -129,11 +156,6 @@ public class BookController implements Initializable {
 		// || fieldNewBookAuthors.getText().isEmpty()
 				|| fieldNewBookNumCopies.getText().isEmpty())
 			throw new ValException("Book fields cannot be empty");
-	}
-
-	@FXML
-	void createNewAuthor(ActionEvent event) {
-
 	}
 
 	public void valNumCopies() throws ValException {
@@ -212,6 +234,7 @@ public class BookController implements Initializable {
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		if(!viewType.equals("copy")) {
 		Callback<TableColumn<Author, String>, TableCell<Author, String>> cellFactory =
 	             new Callback<TableColumn<Author, String>, TableCell<Author, String>>() {
 	                 public TableCell call(TableColumn p) {
@@ -324,12 +347,14 @@ public class BookController implements Initializable {
 	                 }
 	            );
 	        
-	        List<Author> authors = new ArrayList<>();
-	        Address a= new Address("101 S. Main", "Fairfield", "IA", "52556");
-	        authors.add(new Author("Joe", "Thomas", "641-445-2123", a, "A happy man is he."));
-	        ObservableList<Author> data=FXCollections.observableArrayList(authors);
+	        
+//	        Address a= new Address("101 S. Main", "Fairfield", "IA", "52556");
+//	        authors.add(new Author("Joe", "Thomas", "641-445-2123", a, "A happy man is he."));
+	        Address a= new Address("", "", "", "");
+	        authors.add(new Author("", "", "", a, ""));
+	        data=FXCollections.observableArrayList(authors);
 	        fieldNewBookAuthors.setItems(data);
 		
 	}
-	
+	}
 }

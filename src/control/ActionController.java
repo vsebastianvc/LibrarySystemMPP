@@ -43,13 +43,24 @@ public class ActionController {
 	
 	@FXML
 	void checkoutBook(ActionEvent event) {
+		DataAccess db = new DataAccessFacade();
+		HashMap<String, LibraryMember> list_members = db.readMemberMap();
+		HashMap<String, Book> books = db.readBooksMap();
+
+		if (list_members.get(fieldCheckoutMemberId.getText())==null) {
+			Util.showAlert("Member Id Not found", "Not data found", AlertType.ERROR);
+			return;
+		}
+		Book temp_book = books.get(fieldCheckoutISBN.getText());
+
+		if (temp_book==null) {
+			Util.showAlert("Book isbn No found", "Not data found", AlertType.ERROR);
+			return;
+		}
+		else {
 		try {
 			valMemberID(fieldCheckoutMemberId.getText());
-			valISBN(fieldCheckoutISBN.getText());
-			DataAccess db = new DataAccessFacade();
-			HashMap<String, LibraryMember> list_members = db.readMemberMap();
-			HashMap<String, Book> books = db.readBooksMap();
-			Book temp_book = books.get(fieldCheckoutISBN.getText());
+			valISBN(fieldCheckoutISBN.getText());		
 				if (temp_book.isAvailable()) {
 					BookCopy bc = temp_book.getNextAvailableCopy();
 
@@ -60,15 +71,13 @@ public class ActionController {
 					db.saveAbook(temp_book);
 					Util.persistRecord(cre);
 					this.panelCheckOut.getChildren().clear();
-					System.out.println("HIZO CHECKOUT !!!!");
+//					System.out.println("HIZO CHECKOUT !!!!");
 					try {
 						
 						AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CheckOutRecord.fxml"));
 						this.panelCheckOut.getChildren().clear();
 						this.panelCheckOut.getChildren().add(page);
-						// checkoutSuccess( cre);
-
-						// Gooooooooooooo hizo checkout
+						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -82,7 +91,7 @@ public class ActionController {
 		} catch (ValException e) {
 			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
 		}
-		
+		}
 	}
 
 	@FXML
