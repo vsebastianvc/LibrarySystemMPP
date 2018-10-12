@@ -31,10 +31,6 @@ public class CheckoutRecordEntry implements Serializable {
 		return dueDate;
 	}
 
-	public String fixSize(String string) {
-		return null;
-	}
-
 	@Override
 	public String toString() {
 

@@ -55,10 +55,10 @@ final public class User implements Serializable {
 
 	}
 
-	public boolean isSuperUser() {
-		return this.authorization.equals(Auth.ADMIN) || this.authorization.equals(Auth.BOTH);
-
-	}
+//	public boolean isSuperUser() {
+//		return this.authorization.equals(Auth.ADMIN) || this.authorization.equals(Auth.BOTH);
+//
+//	}
 
 	@Override
 	public String toString() {
