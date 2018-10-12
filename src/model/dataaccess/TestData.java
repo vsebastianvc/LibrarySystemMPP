@@ -53,9 +53,9 @@ public class TestData {
 	@SuppressWarnings("serial")
 	List<User> allUsers = new ArrayList<User>() {
 		{
-			add(new User("101", "xyz", Auth.LIBRARIAN, new Person("Andres", "Panamito", "0986036701",addresses.get(4))));
-			add(new User("102", "abc", Auth.ADMIN,new Person("Sebastian", "Valencia", "3203387287",addresses.get(1))));
-			add(new User("103", "111", Auth.BOTH, new Person("Carlos", "Hernandez", "3004633523",addresses.get(5))));
+			add(new User("vsebastianvc", "123", Auth.LIBRARIAN, new Person("Andres", "Panamito", "0986036701",addresses.get(4))));
+			add(new User("chernandez", "123", Auth.ADMIN,new Person("Sebastian", "Valencia", "3203387287",addresses.get(1))));
+			add(new User("panamito", "123", Auth.BOTH, new Person("Carlos", "Hernandez", "3004633523",addresses.get(5))));
 		}
 	};
 

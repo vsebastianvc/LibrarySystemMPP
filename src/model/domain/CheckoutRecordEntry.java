@@ -54,10 +54,20 @@ public class CheckoutRecordEntry implements Serializable {
 	public String getBookName() {
 		return bookcopy.getBook().getTitle();
 	}
+	public String getCopyNumber() {
+		return String.valueOf(bookcopy.getCopyNum());
+	}
+	public String getIsAvailable() {
+		return String.valueOf(bookcopy.getisAvailable());
+	}
+	public String getMemberId() {
+		return member.getMemberId();
+	}
 	public String getDuedateString() {
 		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 		return dueDate!=null?dueDate.format(pattern):"";
 	}
+	
 	
 	public String getCheckoutDateString() {
 		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM-dd-yyyy");

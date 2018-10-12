@@ -98,10 +98,10 @@ final public class BookCopy implements Serializable{
 	public String getIsbn() {
 		return book.getIsbn();
 	}
-	public String bookName() {
+	public String getBookName() {
 		return book.getTitle();
 	}
-
+	
 	@Override
 	public String toString() {
 		return book!=null?this.getCopyNum()+ " | " + book.getIsbn() +" | "+ book.getTitle():"There's no book associated to this copy!";

@@ -150,20 +150,6 @@ public class SystemController {
 			throw new ValException("Invalid Member ID");
 	}
 	
-	@FXML
-	void queryOverdue(ActionEvent event) {
-		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
-			Util.showAlert("Librarian cannot view overdue", "Permission denied", AlertType.ERROR);
-			return;
-		}
-		try {
-			valISBN(fieldQueryOverdueISBN.getText());
-		} catch (ValException e) {
-			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
-		}
-		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
-	}
-	
 	/**
 	 * Initializes the controller class.
 	 */
@@ -245,7 +231,7 @@ public class SystemController {
 	void queryOverdueFired(ActionEvent event) {
 		System.out.println("Query Overdue");
 		try {
-			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/queryOverdue.fxml"));
+			AnchorPane page = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/showBook.fxml"));
 			this.contentPanel.getChildren().clear();
 			this.contentPanel.getChildren().add(page);
 			setFormInfo("Query Overdue","Use to check for books already had to be returned to library. Enter Book's ISBN.","/view/QueryOverdue.PNG");
@@ -289,6 +275,19 @@ public class SystemController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	@FXML
+	void queryOverdue(ActionEvent event) {
+		if (Util.getInstanceUser().getAuthorization().equals(Auth.LIBRARIAN)) {
+			Util.showAlert("Librarian cannot view overdue", "Permission denied", AlertType.ERROR);
+			return;
+		}
+		try {
+			valISBN(fieldQueryOverdueISBN.getText());
+		} catch (ValException e) {
+			Util.showAlert(e.getMessage(), "Error", AlertType.ERROR);
+		}
+		System.out.printf("Query overdue with ISBN: %s \n", fieldQueryOverdueISBN.getText());
 	}
 
 }

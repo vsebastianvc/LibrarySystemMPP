@@ -91,6 +91,9 @@ public class BookController implements Initializable {
 	ObservableList<Author> data;
 
 	List<Author> authors = new ArrayList<>();
+	
+	@FXML 
+	private AnchorPane panelAddBook;
 
 	@FXML
 	void createNewBookCopy(ActionEvent event) {
@@ -138,7 +141,7 @@ public class BookController implements Initializable {
 		Book book1 = books.get(fieldNewBookISBN.getText());
 //		System.out.println("BOOK " + book1.toStringNewBook());
 //		Util.showAlert(book1.toStringNewBook(), "CREATED", AlertType.INFORMATION);
-
+		this.panelAddBook.getChildren().clear();
 	}
 
 	@FXML
