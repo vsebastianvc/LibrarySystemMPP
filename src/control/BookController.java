@@ -37,7 +37,7 @@ import util.Util;
 import util.ValException;
 
 public class BookController implements Initializable {
-	
+
 	private String viewType;
 	// New book screen items
 	@FXML // fx:id="fieldNewBookISBN"
@@ -65,12 +65,12 @@ public class BookController implements Initializable {
 
 	@FXML
 	private AnchorPane panelAddCopy;
-	
+
 	public BookController(String viewType) {
 		// TODO Auto-generated constructor stub
-		this.viewType=viewType;
+		this.viewType = viewType;
 	}
-	
+
 	@FXML
 	TableColumn<Author, String> firstName;
 	@FXML
@@ -87,9 +87,9 @@ public class BookController implements Initializable {
 	TableColumn<Author, String> columZip;
 	@FXML
 	TableColumn<Author, String> biography;
-	
+
 	ObservableList<Author> data;
-	
+
 	List<Author> authors = new ArrayList<>();
 
 	@FXML
@@ -128,22 +128,25 @@ public class BookController implements Initializable {
 		}
 //		fieldNewBookAuthors.setEditable(true);
 		DataAccess db = new DataAccessFacade();
-		Book book = new Book(fieldNewBookISBN.getText(), fieldNewBookTitle.getText(), Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors);
+		Book book = new Book(fieldNewBookISBN.getText(), fieldNewBookTitle.getText(),
+				Integer.parseInt(choiceNewBookMaxCheckout.getValue().toString()), authors,
+				Integer.parseInt(fieldNewBookNumCopies.getText()));
 		db.saveAbook(book);
-		
-		
+
 		DataAccess dbTest = new DataAccessFacade();
 		HashMap<String, Book> books = dbTest.readBooksMap();
 		Book book1 = books.get(fieldNewBookISBN.getText());
-		System.out.println("BOOK " + book1);
-        
+//		System.out.println("BOOK " + book1.toStringNewBook());
+//		Util.showAlert(book1.toStringNewBook(), "CREATED", AlertType.INFORMATION);
+
 	}
+
 	@FXML
 	void createNewAuthor(ActionEvent event) {
-		Address a= new Address("", "", "", "");
-        authors.add(new Author("", "", "", a, ""));
-        data=FXCollections.observableArrayList(authors);
-        fieldNewBookAuthors.setItems(data);
+		Address a = new Address("", "", "", "");
+		authors.add(new Author("", "", "", a, ""));
+		data = FXCollections.observableArrayList(authors);
+		fieldNewBookAuthors.setItems(data);
 	}
 
 	public void valNoBookEmpty() throws ValException {
@@ -167,194 +170,161 @@ public class BookController implements Initializable {
 		if (isbn == null || isbn.isEmpty())
 			throw new ValException("Invalid Book's ISBN");
 	}
+
 	class EditingCell extends TableCell<Author, String> {
-		 
-        private TextField textField;
- 
-        public EditingCell() {
-        }
- 
-        @Override
-        public void startEdit() {
-            if (!isEmpty()) {
-                super.startEdit();
-                createTextField();
-                setText(null);
-                setGraphic(textField);
-                textField.selectAll();
-            }
-        }
- 
-        @Override
-        public void cancelEdit() {
-            super.cancelEdit();
- 
-            setText((String) getItem());
-            setGraphic(null);
-        }
- 
-        @Override
-        public void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
- 
-            if (empty) {
-                setText(null);
-                setGraphic(null);
-            } else {
-                if (isEditing()) {
-                    if (textField != null) {
-                        textField.setText(getString());
-                    }
-                    setText(null);
-                    setGraphic(textField);
-                } else {
-                    setText(getString());
-                    setGraphic(null);
-                }
-            }
-        }
- 
-        private void createTextField() {
-            textField = new TextField(getString());
-            textField.setMinWidth(this.getWidth() - this.getGraphicTextGap()* 2);
-            textField.focusedProperty().addListener(new ChangeListener<Boolean>(){
-                @Override
-                public void changed(ObservableValue<? extends Boolean> arg0, 
-                    Boolean arg1, Boolean arg2) {
-                        if (!arg2) {
-                            commitEdit(textField.getText());
-                        }
-                }
-            });
-        }
- 
-        private String getString() {
-            return getItem() == null ? "" : getItem().toString();
-        }
-    }
+
+		private TextField textField;
+
+		public EditingCell() {
+		}
+
+		@Override
+		public void startEdit() {
+			if (!isEmpty()) {
+				super.startEdit();
+				createTextField();
+				setText(null);
+				setGraphic(textField);
+				textField.selectAll();
+			}
+		}
+
+		@Override
+		public void cancelEdit() {
+			super.cancelEdit();
+
+			setText((String) getItem());
+			setGraphic(null);
+		}
+
+		@Override
+		public void updateItem(String item, boolean empty) {
+			super.updateItem(item, empty);
+
+			if (empty) {
+				setText(null);
+				setGraphic(null);
+			} else {
+				if (isEditing()) {
+					if (textField != null) {
+						textField.setText(getString());
+					}
+					setText(null);
+					setGraphic(textField);
+				} else {
+					setText(getString());
+					setGraphic(null);
+				}
+			}
+		}
+
+		private void createTextField() {
+			textField = new TextField(getString());
+			textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+			textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+				@Override
+				public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+					if (!arg2) {
+						commitEdit(textField.getText());
+					}
+				}
+			});
+		}
+
+		private String getString() {
+			return getItem() == null ? "" : getItem().toString();
+		}
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if(!viewType.equals("copy")) {
-		Callback<TableColumn<Author, String>, TableCell<Author, String>> cellFactory =
-	             new Callback<TableColumn<Author, String>, TableCell<Author, String>>() {
-	                 public TableCell call(TableColumn p) {
-	                    return new EditingCell();
-	                 }
-	             };
-	             
-	        firstName.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("firstName"));
-	        firstName.setCellFactory(cellFactory);
-	        firstName.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).setFirstName(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        lastName.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("lastName"));
-	        lastName.setCellFactory(cellFactory);
-	        lastName.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).setLastName(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        phone.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("telephone"));
-	        phone.setCellFactory(cellFactory);
-	        phone.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).setTelephone(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        street.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("street"));
-	        street.setCellFactory(cellFactory);
-	        street.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).getAddress().setStreet(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        city.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("city"));
-	        city.setCellFactory(cellFactory);
-	        city.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).getAddress().setCity(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        state.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("state"));
-	        state.setCellFactory(cellFactory);
-	        state.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).getAddress().setState(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        columZip.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("zip"));
-	        columZip.setCellFactory(cellFactory);
-	        columZip.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).getAddress().setZip(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        biography.setCellValueFactory(
-	                new PropertyValueFactory<Author, String>("biography"));
-	        biography.setCellFactory(cellFactory);
-	        biography.setOnEditCommit(
-	                new EventHandler<CellEditEvent<Author, String>>() {
-	                    @Override
-	                    public void handle(CellEditEvent<Author, String> t) {
-	                        ((Author) t.getTableView().getItems().get(
-	                            t.getTablePosition().getRow())
-	                            ).setBiography(t.getNewValue());
-	                    }
-	                 }
-	            );
-	        
-	        
+		if (!viewType.equals("copy")) {
+			Callback<TableColumn<Author, String>, TableCell<Author, String>> cellFactory = new Callback<TableColumn<Author, String>, TableCell<Author, String>>() {
+				public TableCell call(TableColumn p) {
+					return new EditingCell();
+				}
+			};
+
+			firstName.setCellValueFactory(new PropertyValueFactory<Author, String>("firstName"));
+			firstName.setCellFactory(cellFactory);
+			firstName.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+							.setFirstName(t.getNewValue());
+				}
+			});
+			lastName.setCellValueFactory(new PropertyValueFactory<Author, String>("lastName"));
+			lastName.setCellFactory(cellFactory);
+			lastName.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+							.setLastName(t.getNewValue());
+				}
+			});
+			phone.setCellValueFactory(new PropertyValueFactory<Author, String>("telephone"));
+			phone.setCellFactory(cellFactory);
+			phone.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+							.setTelephone(t.getNewValue());
+				}
+			});
+			street.setCellValueFactory(new PropertyValueFactory<Author, String>("street"));
+			street.setCellFactory(cellFactory);
+			street.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow())).getAddress()
+							.setStreet(t.getNewValue());
+				}
+			});
+			city.setCellValueFactory(new PropertyValueFactory<Author, String>("city"));
+			city.setCellFactory(cellFactory);
+			city.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow())).getAddress()
+							.setCity(t.getNewValue());
+				}
+			});
+			state.setCellValueFactory(new PropertyValueFactory<Author, String>("state"));
+			state.setCellFactory(cellFactory);
+			state.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow())).getAddress()
+							.setState(t.getNewValue());
+				}
+			});
+			columZip.setCellValueFactory(new PropertyValueFactory<Author, String>("zip"));
+			columZip.setCellFactory(cellFactory);
+			columZip.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow())).getAddress()
+							.setZip(t.getNewValue());
+				}
+			});
+			biography.setCellValueFactory(new PropertyValueFactory<Author, String>("biography"));
+			biography.setCellFactory(cellFactory);
+			biography.setOnEditCommit(new EventHandler<CellEditEvent<Author, String>>() {
+				@Override
+				public void handle(CellEditEvent<Author, String> t) {
+					((Author) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+							.setBiography(t.getNewValue());
+				}
+			});
+
 //	        Address a= new Address("101 S. Main", "Fairfield", "IA", "52556");
 //	        authors.add(new Author("Joe", "Thomas", "641-445-2123", a, "A happy man is he."));
-	        Address a= new Address("", "", "", "");
-	        authors.add(new Author("", "", "", a, ""));
-	        data=FXCollections.observableArrayList(authors);
-	        fieldNewBookAuthors.setItems(data);
-		
-	}
+			Address a = new Address("", "", "", "");
+			authors.add(new Author("", "", "", a, ""));
+			data = FXCollections.observableArrayList(authors);
+			fieldNewBookAuthors.setItems(data);
+
+		}
 	}
 }
